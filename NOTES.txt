@@ -1,0 +1,92 @@
+dekdek@dek.com
+Dekdek04
+
+############
+
+property-detail.php = dito nakadisplay yung info nung property na naclick. 
+1. Yung sa map ng property, dapat makakapag insert ng location gamit google maps yung agent pagpost ng bahay.
+
+2. Yung reservation form sa right side, pagawa ng ayos na dapat pagreserve ng specific property, sa agent lang mapupunta yung reservation tapos mapupunta sa account ni broker yung info ng napareserve.
+
+3. Yung user level ko, hindi maayos. Pag kaya mo pong gawin, paayos naman po. Dinaya ko lang yung mga pages eh. Dinoble ko yung mga same pages para magkaibang page yung pagredirectan ng mga user pagkalog in which is dapat sa isa lang tapos may maayos na user level dapat.
+
+############
+
+*********(LOGGED OUT PAGES)**********
+
+"index.php"
+~ Search module. Yung textbox pa lang for location nagana, yung mga dropdown for range of searches hindi pa. ( Done ) 
+
+"agents.php"
+~ Lahat ng nakaregister na broker/agent dito nakalista. Tapos dapat pag click ng pangalan nila, maviview yung mga bahay na napost nila sa website. Yung design din kailangan maayos. ( Done ) 
+
+"buysalerent.php (Browse)"
+~ Dito lahat nakalista yung mga property na nakapost sa website.
+~ Search module. Textbox lang ulit nagana hindi pa yung mga drop down for range of searches.
+~ Dapat may date din pala kung kelan napost yung bahay. ( Done )
+
+"contact.php"
+~ Dito macocontact ng user yung admin for inquiries or concerns. 
+
+"searh_results.php"
+~ Dito madidisplay yung mga nasearch sa textbox ng location sa kahit anong page na may search module. Di pa nasesearch dito yung mga range na drop down. ( Done )
+
+"login_page.php"
+~ Dito maglologin yung customer/client. Sa signup, may email confirmation link akong ginawa pacheck na lang lahat kung tama ba pagkakagawa ko.
+
+"profile.php"
+~ After maglogin ng client, dito mapupunta. 
+
+
+
+*********(LOGGED IN PAGES - CUSTOMER/CLIENT)**********
+
+"index-logged-in.php"
+~ Search module. Yung textbox pa lang for location nagana, yung mga dropdown for range of searches hindi pa. Tapos same lang yung napupuntahan, search_results.php tapos hindi nakalog in. ( Done )
+
+~ Pag nagclick ng mga property tapos mapupuna sa property_detail.php, hindi na siya nakalog in dun sa page na yon. Need maayos.( Done )
+
+"about-logged-in.php"
+~ Same lang ng about.php
+
+"agents-logged-in.php"
+~ Same lang ng agents.php
+
+"buysalerent-logged-in.php"
+~ Same lang ng buysalerent.php. Pag nagclick ng property, napupunta pa din sa isang page na hindi nakalogin.
+
+"contact-logged-in.php"
+~ Same lang ng contact.php
+
+
+
+*********(LOGGED IN PAGES - AGENTS)**********
+
+"agent_login_page.php"
+~ Dito maglologin mga registered agents
+~ Di ko mapagana yung forgot password ng agents. May email confirmation link din to kagaya ng registration
+
+"agent-panel-profile.php"
+~ Dito nakadisplay yung profile ng agent na naglogin. Nasa left side yung nav ng account niya
+
+"agent-panel-listings.php"
+~ Dito makikita yung mga sariling mga post niya na bahay. May options dapat dito na 
+ SHOW - Para madisplay niya yung specific na property sa website
+ HIDE - Pag nakareserve na yung bahay or pag di na available, click niya to para mawala sa website
+ REMOVE - Pag talagang aalisin niya na sa website. Di pa maayos lahat tong tatlo
+
+ "agent-panel-reservations.php"
+ ~ Dito makikita dapat yung mga nagpareserve ng mga pinost niya nakalist dito. Di pa to maayos
+
+ "agent-panel-messages.php"
+ ~ Dito makikita yung mga nagcontact sa kanya na clients. Dito papasok yung sms pag inapprove niya yung reservation. Di pa malinaw ginagawa ko dito basta dapat may sms sa reservation tapos may instruction kung pano mapoprocess nila yung bayaran ng hindi nangyayari sa website.
+
+ MGA SAME NA PAGES FOR AGENTS
+ "agent-index.php"
+ "agent-about.php"
+ "agent-agents.php"
+ "agent-contact.php"
+
+
+
+ Bale need na lang maayos silang lahat tiyaka malinis yung tamang mga functions nila. Yung sa google map din need dapat makapagpasok ng embedded map sa pagpasok ng property sa bahay. Pacheck na lang po lahat din yung system kasi talagang beginner pa lang po ako eh kaya ganyan kadumi yung pagkakagawa. Thank you po!
