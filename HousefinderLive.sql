@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: housefinder
+-- Host: 127.0.0.1    Database: housefinder
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -49,6 +49,7 @@ DROP TABLE IF EXISTS `agents`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `agents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_type_id` int(11) NOT NULL DEFAULT '2',
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) NOT NULL,
@@ -75,7 +76,7 @@ CREATE TABLE `agents` (
 
 LOCK TABLES `agents` WRITE;
 /*!40000 ALTER TABLE `agents` DISABLE KEYS */;
-INSERT INTO `agents` VALUES (1,'Rustine','Louise','Agbayani','Blk. 1, Lot 41, Carnation St., Maryhomes Subdivision, Molino IV, Bacoor, Cavite','1998-05-17',19,'Male','09565042295','agbayanirustine.ra@gmail.com','5374946','agbayanirustine.ra@gmail.com','$2y$10$st8BtBfcda4fB.45Q2xX/Oyoa0DMP/DOq/ACMV/cOQZ8hseDbDJde','images/hd-dog-wallpapers-24.jpg','70efdf2ec9b086079795c442636b55fb',0,'2018-01-07'),(2,'Derick','Reuben','Llanes','West Ville, Bacoor, Cavite','1998-01-03',20,'Male','09259034876','dekllanes@gmail.com','','dekllanes@gmail.com','$2y$10$uK3WAc8.oJ.QH17i3z8ReeZUT8TNgt0nW0P4EyOjG.lhKJKWLyoTy','images/dp.jpg','812b4ba287f5ee0bc9d43bbf5bbe87fb',0,'2018-01-08'),(3,'Karl','Alawi','Gonzales','Dasmarinas, Cavite','1997-09-11',20,'Male','09435234234','karlgonzales@gmail.com','','karlgonzales@gmail.com','$2y$10$Ch8vUMB97yhxUENbWqOoP.z9y4Sq7fnECxCxflwuq1HdsZ.Ss0xLa','images/dog-wallpaper-preview-21.jpg','58a2fc6ed39fd083f55d4182bf88826d',0,'2018-01-23'),(4,'Dek','Malubay','Llanes','Block 6 Lot 5 Casimiro Westville Homes Ligas 3','1998-01-04',20,'Male','09351028410','dekdek@dek.com','','dekdek@dek.com','$2y$10$BAhWfDOc9MyhnR2j83Ee9eCg.FEm.2NP/JxGhW8Ai7AkT4XGNAjou','images/hd-dog-wallpapers-24.jpg','043c3d7e489c69b48737cc0c92d0f3a2',0,'2018-01-24');
+INSERT INTO `agents` VALUES (1,2,'Rustine','Louise','Agbayani','Blk. 1, Lot 41, Carnation St., Maryhomes Subdivision, Molino IV, Bacoor, Cavite','1998-05-17',19,'Male','09565042295','agbayanirustine.ra@gmail.com','5374946','agbayanirustine.ra@gmail.com','$2y$10$st8BtBfcda4fB.45Q2xX/Oyoa0DMP/DOq/ACMV/cOQZ8hseDbDJde','images/hd-dog-wallpapers-24.jpg','70efdf2ec9b086079795c442636b55fb',0,'2018-01-07'),(2,2,'Derick','Reuben','Llanes','West Ville, Bacoor, Cavite','1998-01-03',20,'Male','09259034876','dekllanes@gmail.com','','dekllanes@gmail.com','$2y$10$uK3WAc8.oJ.QH17i3z8ReeZUT8TNgt0nW0P4EyOjG.lhKJKWLyoTy','images/dp.jpg','812b4ba287f5ee0bc9d43bbf5bbe87fb',0,'2018-01-08'),(3,2,'Karl','Alawi','Gonzales','Dasmarinas, Cavite','1997-09-11',20,'Male','09435234234','karlgonzales@gmail.com','','karlgonzales@gmail.com','$2y$10$Ch8vUMB97yhxUENbWqOoP.z9y4Sq7fnECxCxflwuq1HdsZ.Ss0xLa','images/dog-wallpaper-preview-21.jpg','58a2fc6ed39fd083f55d4182bf88826d',0,'2018-01-23'),(4,2,'Dek','Malubay','Llanes','Block 6 Lot 5 Casimiro Westville Homes Ligas 3','1998-01-04',20,'Male','09351028410','dekdek@dek.com','','dekdek@dek.com','$2y$10$BAhWfDOc9MyhnR2j83Ee9eCg.FEm.2NP/JxGhW8Ai7AkT4XGNAjou','images/hd-dog-wallpapers-24.jpg','043c3d7e489c69b48737cc0c92d0f3a2',0,'2018-01-24');
 /*!40000 ALTER TABLE `agents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,6 +197,30 @@ INSERT INTO `properties` VALUES (1,'For Sale','House and Lot','Bacoor, Cavite','
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user_types`
+--
+
+DROP TABLE IF EXISTS `user_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_types` (
+  `user_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_type` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`user_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_types`
+--
+
+LOCK TABLES `user_types` WRITE;
+/*!40000 ALTER TABLE `user_types` DISABLE KEYS */;
+INSERT INTO `user_types` VALUES (1,'Admin'),(2,'Agents'),(3,'Users');
+/*!40000 ALTER TABLE `user_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -204,6 +229,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_type_id` int(11) NOT NULL DEFAULT '3',
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -220,7 +246,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Dek','Llanes','llanesderick@gmail.com','Dekdek04','',1);
+INSERT INTO `users` VALUES (1,3,'Dek','Llanes','llanesderick@gmail.com','Dekdek04','',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -233,4 +259,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-24 15:15:52
+-- Dump completed on 2018-01-25  1:52:09

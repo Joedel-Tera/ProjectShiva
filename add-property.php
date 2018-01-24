@@ -4,7 +4,6 @@ require_once 'db.php';
 
 <?php
 session_start();
-var_dump($_SESSION);
 
 if(!$_SESSION["email"])
 {
@@ -144,7 +143,7 @@ if(!$_SESSION["email"])
     
     <!-- Header Starts -->
     <nav class="navbar navbar-fixed-top">
-<div class="navbar-wrapper">
+        <div class="navbar-wrapper">
 
         <div class="navbar-inverse" role="navigation">
           <div class="container">
@@ -178,26 +177,25 @@ if(!$_SESSION["email"])
 
           </div>
         </div>
-  <div class="dropdown">
+    <div class="dropdown">
 
-    <button style="background-color: #000; font-color: white; float: right; margin-top: -54px; margin-right: 20px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-     <?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?>
-        
-        &nbsp;&nbsp;
-        <span class="caret white"></span>
-      </button>
-    <ul style="margin-top: -22px; margin-left: 1170px;" class="dropdown-menu">
-      <li class="dropdown-header">Account Settings</li>
-      <li><a style="text-transform: capitalize;" href="edit-profile.php">Manage Account</a></li>
-      <li class="divider"></li>
-      <li class="dropdown-header">Done browsing?</li>
-      <li><a style="text-transform: capitalize;" href="logout.php">Logout</a></li>
-    </ul>
-  </div>
+        <button style="background-color: #000; font-color: white; float: right; margin-top: -54px; margin-right: 20px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+         <?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?>
+            &nbsp;&nbsp;
+            <span class="caret white"></span>
+        </button>
+            <ul style="margin-top: -22px; margin-left: 1170px;" class="dropdown-menu">
+              <li class="dropdown-header">Account Settings</li>
+              <li><a style="text-transform: capitalize;" href="edit-profile.php">Manage Account</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Done browsing?</li>
+              <li><a style="text-transform: capitalize;" href="logout.php">Logout</a></li>
+            </ul>
+    </div>
     </div>
         
         
-     </nav> 
+    </nav> 
     <br>
     <br>
     

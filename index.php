@@ -1,6 +1,6 @@
 <?php
 require_once 'db.php';
-include 'headertop.php';
+
 session_start();
   if(isset($_SESSION["email"]))
   {
@@ -9,6 +9,7 @@ session_start();
 ?>
 <html>
     <head>
+        <?php include 'commonHeaderLinks.php'; ?>
           <link rel="stylesheet" href="css/jquery-ui.css">
           <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <style>
@@ -16,52 +17,6 @@ session_start();
               font-family: 'Titillium Web', sans-serif;
             }
         </style>
-<!--
-        <style>
-       #return-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.7);
-    width: 50px;
-    height: 50px;
-    display: block;
-    text-decoration: none;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
-    display: none;
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-#return-to-top i {
-    color: #fff;
-    margin: 0;
-    position: relative;
-    left: 16px;
-    top: 13px;
-    font-size: 19px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-#return-to-top:hover {
-    background: rgba(0, 0, 0, 0.9);
-}
-#return-to-top:hover i {
-    color: #fff;
-    top: 5px;
-}
-
-
-        </style>
--->
 
     <script>
   $( function() {
@@ -81,10 +36,10 @@ session_start();
     });
   } );
   </script>
-
     </head>
 <br>
 <body>
+<?php include 'commonHeader.php'; ?>
 <div class="banner-search">
   <div class="container">
 
