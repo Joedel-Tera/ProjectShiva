@@ -4,6 +4,7 @@ require_once 'db.php';
 
 <?php
 session_start();
+var_dump($_SESSION);
 
 if(!$_SESSION["email"])
 {
@@ -403,7 +404,7 @@ if(!$_SESSION["email"])
 
                 <div class="form-group" style="padding:20px;">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <input type="hidden" value="<?php echo $_SESSION['user_session']; ?>" name="userId">
+                        <input type="hidden" value="<?php echo $_SESSION['id']; ?>" name="userId">
                         <button type="submit" name="btn_save" class="btn btn-primary" value="1">Save</button>
                     </div>
                 </div>

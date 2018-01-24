@@ -14,6 +14,7 @@ else {
     $last_name = $_SESSION['last_name'];
     $email = $_SESSION['email'];
     $active = $_SESSION['active'];
+    $id = $_SESSION['id'];
 }
 ?>
 

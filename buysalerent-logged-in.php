@@ -240,9 +240,9 @@ if(!$_SESSION["email"])
                 </div>
         <div class="row">
             <div class="col-lg-5">
-              <select name="property_type" class="form-control">
+              <select name="property_category" class="form-control">
                 <option disabled selected>Type</option>
-                <option>House & Lot</option>
+                <option>House and Lot</option>
                 <option>Condominium</option>
                 <option>Apartment</option>
               </select>
