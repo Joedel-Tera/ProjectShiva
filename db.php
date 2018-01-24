@@ -1,7 +1,7 @@
 <?php
 /* Database connection settings */
 
-$setDeployment = 'Live'; // Live or Local
+$setDeployment = 'Local'; // Live or Local
 
 if($setDeployment == 'Live'){
 	$host = 'localhost';

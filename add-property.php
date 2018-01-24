@@ -4,6 +4,7 @@ require_once 'db.php';
 
 <?php
 session_start();
+
 if(!$_SESSION["email"])
 {
     //Do not show protected data, redirect to login...
@@ -23,7 +24,7 @@ if(!$_SESSION["email"])
     <script src="assets/bootstrap/js/jquery-1.9.1.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.js"></script>
     <script src="assets/script.js"></script>
-    <link rel="stylesheet" href="jquery.dataTables.min.css" />
+    
     
     <!-- Owl stylesheet -->
     <link rel="stylesheet" href="assets/owl-carousel/owl.carousel.css">
@@ -42,6 +43,7 @@ if(!$_SESSION["email"])
     
     
         <style>
+        #map-canvas { height:400px;width: 100%; }
         *[role="form"] {
             max-width: 530px;
             padding: 15px;
@@ -373,15 +375,43 @@ if(!$_SESSION["email"])
                     <div class="col-sm-8">
                          <input type="file" id="featured" name="featured" accept="image/*" required/>
                     </div>
-                </div>                       
+                </div>
                 <div class="form-group">
+                    <label class="col-sm-4 control-label" style="padding-top:20px;"> Search Location for Coordinates </label>
+                    <div class="col-sm-8">
+                        <span style="color:red;"> * Note only the coordinates will be saved in the database </span>
+                         <input id="search-txt"  class="form-control" type="text" value="Bacoor, Cavite" maxlength="100" style="width: 200px;display: inline-block;">
+                        <input id="search-btn" class="btn" type="button" value="Locate Address" style="display: inline;position: relative; margin-bottom: 20px;">
+                        <input id="detect-btn" class="btn" type="button" value="Detect Location" disabled>
+                    </div>
+                    <div class="col-md-12" style="margin:20px 0;">
+                        <div class="col-md-6">
+                            <label> Latitute </label>
+                            <input id="latitude" name="latitude" class="form-control" readonly> 
+                        </div>
+                        <div class="col-md-6">
+                            <label> Longitude </label>
+                            <input id="longitude" name="longitude" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12" style="padding-bottom:20px">
+                        <div id="map-canvas"></div>
+                    </div>
+                    
+                </div> 
+
+                <div class="form-group" style="padding:20px;">
                     <div class="col-sm-9 col-sm-offset-3">
+                        <input type="hidden" value="<?php echo $_SESSION['user_session']; ?>" name="userId">
                         <button type="submit" name="btn_save" class="btn btn-primary" value="1">Save</button>
                     </div>
                 </div>
                   </form>
-                    <div class="form-group">
-                       <a style="font-size: 15px;" href="agent-panel-listings.php"><i class="glyphicon glyphicon-arrow-left"></i> Back to my Listings</a>
+                  <div style="clear:both;"> </div>
+                    <div class="form-group" style="margin-top:20px;">
+                       <a style="font-size: 15px;" href="agent-panel-listings.php">
+                        <i class="glyphicon glyphicon-arrow-left"></i> Back to my Listings</a>
                   </div>
               </div>
         </div>
@@ -392,7 +422,73 @@ if(!$_SESSION["email"])
 </div>
 </div>
 </div>
-
+<script type="text/javascript">
+        /*
+         * Google Maps: Latitude-Longitude Finder Tool
+         * http://salman-w.blogspot.com/2009/03/latitude-longitude-finder-tool.html
+         */
+        function loadmap() {
+            // initialize map
+            var map = new google.maps.Map(document.getElementById("map-canvas"), {
+                center: new google.maps.LatLng(14.416022, 120.968860),
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            // initialize marker
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                draggable: true,
+                map: map
+            });
+            // intercept map and marker movements
+            google.maps.event.addListener(map, "idle", function() {
+                console.log(map.getCenter().lat());
+                marker.setPosition(map.getCenter());
+                console.log(map.zoom);
+                $('#latitude').val(map.getCenter().lat().toFixed(6));
+                $('#longitude').val(map.getCenter().lng().toFixed(6));
+            });
+            google.maps.event.addListener(marker, "dragend", function(mapEvent) {
+                map.panTo(mapEvent.latLng);
+            });
+            // initialize geocoder
+            var geocoder = new google.maps.Geocoder();
+            google.maps.event.addDomListener(document.getElementById("search-btn"), "click", function() {
+                geocoder.geocode({ address: document.getElementById("search-txt").value }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var result = results[0];
+                        document.getElementById("search-txt").value = result.formatted_address;
+                        if (result.geometry.viewport) {
+                            map.fitBounds(result.geometry.viewport);
+                        } else {
+                            map.setCenter(result.geometry.location);
+                        }
+                    } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+                        alert("Sorry, geocoder API failed to locate the address.");
+                    } else {
+                        alert("Sorry, geocoder API failed with an error.");
+                    }
+                });
+            });
+            google.maps.event.addDomListener(document.getElementById("search-txt"), "keydown", function(domEvent) {
+                if (domEvent.which === 13 || domEvent.keyCode === 13) {
+                    google.maps.event.trigger(document.getElementById("search-btn"), "click");
+                }
+            });
+            // initialize geolocation
+            if (navigator.geolocation) {
+                google.maps.event.addDomListener(document.getElementById("detect-btn"), "click", function() {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+                    }, function() {
+                        alert("Sorry, geolocation API failed to detect your location.");
+                    });
+                });
+                document.getElementById("detect-btn").disabled = false;
+            }
+        }
+    </script>
+    <script src="//maps.googleapis.com/maps/api/js?v=3&amp;sensor=false&amp;key=AIzaSyCa_5PxIUT1mQIkvvcaW-lhxFN4JbtlK4o&amp;callback=loadmap" defer></script>
     </body>
 </html>
 

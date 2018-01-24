@@ -250,7 +250,7 @@ session_start();
           
       
   <div><h4><span class="glyphicon glyphicon-map-marker"></span>Location</h4>
-<div style="width: 120%;" class="well"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.5409125923334!2d120.97265191432355!3d14.395953189933048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d3cfd75b08eb%3A0xa40b1d5ad035c034!2sUniversity+of+Perpetual+Help+System+DALTA%2C+Molino+Campus!5e0!3m2!1sen!2sph!4v1501771920296" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+<div style="width: 120%;" class="well"><iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?q=<?php echo $row['latitude']; ?>,<?php echo $row['longitude']; ?>&key=AIzaSyD6MaLs5FbsXq0Bagjc_vyjeDhy2WOS12Y&zoom=14" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe></div>
   </div>
 
   </div>

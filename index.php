@@ -100,9 +100,9 @@ session_start();
           <button style="width: 100px; margin-top: -97px; margin-left: 450px;" type="submit" name="btn_find" class="btn btn-success">Find Now</button>
           <div style="margin-top: -20px;" class="row">
             <div class="col-lg-3 col-sm-3 ">
-              <select name="property_type" class="form-control">
+              <select name="property_category" class="form-control">
                 <option disabled selected>Type</option>
-                <option>House & Lot</option>
+                <option>House and Lot</option>
                 <option>Condominium</option>
                 <option>Apartment</option>
               </select>

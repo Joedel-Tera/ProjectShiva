@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: housefinder
+-- Host: localhost    Database: housefinder
 -- ------------------------------------------------------
--- Server version	5.7.19
+-- Server version	5.7.20-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -139,7 +139,7 @@ CREATE TABLE `media` (
   `gallery` varchar(255) NOT NULL,
   `pid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `media` (
 
 LOCK TABLES `media` WRITE;
 /*!40000 ALTER TABLE `media` DISABLE KEYS */;
-INSERT INTO `media` VALUES (1,'properties/3.jpg',1),(2,'properties/12.jpg',1),(3,'properties/22.jpg',1),(4,'properties/18.jpg',2),(5,'properties/19.jpg',2),(6,'properties/21.jpg',2),(7,'properties/hampton-condo-for-sale-imus-cavite-deca-homes (5).jpg',3),(8,'properties/01-apecweb_projects-san-isidroTOWNHOUSE-units-floor-plan.jpg',4),(9,'properties/bahay-kubo-different-types-kinds-styles-of-houses-in-philippines-rowhouses-towhouses (2).jpg',5),(10,'properties/4-bungalow-shutterstock-555x370.jpg',6),(11,'properties/0002.jpg',7),(12,'properties/townhouse-plans-PHP2014011-perspective.jpg',8),(13,'properties/1house.jpg',9),(14,'properties/5-single-attached-555x369.jpg',10),(15,'properties/55dfd9e13297913fd809722ef25df99c--u-shaped-houses-cape-cod-houses.jpg',11),(16,'properties/1452472_708904225907516_3018693867875630168_n.jpg',12),(17,'properties/house-and-lot.jpg',13),(18,'properties/p_99_DREAM-HOMES-A-SINGLE-DETACHED-HOUSE-TOWNHOUSE-FOR-SALE-LOCATED-IN-QUIJADA-GUADALUPE-CEBU-CITY_c_2_TOWNHOUSE-FOR-SALE-IN-QUIJADA-GUADALUPE-CEBU-CITY-PHILIPPINES-TOWNHOUSE_6491355.jpg',14),(19,'properties/SD House 2.jpg',15);
+INSERT INTO `media` VALUES (1,'properties/3.jpg',1),(2,'properties/12.jpg',1),(3,'properties/22.jpg',1),(4,'properties/18.jpg',2),(5,'properties/19.jpg',2),(6,'properties/21.jpg',2),(7,'properties/hampton-condo-for-sale-imus-cavite-deca-homes (5).jpg',3),(8,'properties/01-apecweb_projects-san-isidroTOWNHOUSE-units-floor-plan.jpg',4),(9,'properties/bahay-kubo-different-types-kinds-styles-of-houses-in-philippines-rowhouses-towhouses (2).jpg',5),(10,'properties/4-bungalow-shutterstock-555x370.jpg',6),(11,'properties/0002.jpg',7),(12,'properties/townhouse-plans-PHP2014011-perspective.jpg',8),(13,'properties/1house.jpg',9),(14,'properties/5-single-attached-555x369.jpg',10),(15,'properties/55dfd9e13297913fd809722ef25df99c--u-shaped-houses-cape-cod-houses.jpg',11),(16,'properties/1452472_708904225907516_3018693867875630168_n.jpg',12),(17,'properties/house-and-lot.jpg',13),(18,'properties/p_99_DREAM-HOMES-A-SINGLE-DETACHED-HOUSE-TOWNHOUSE-FOR-SALE-LOCATED-IN-QUIJADA-GUADALUPE-CEBU-CITY_c_2_TOWNHOUSE-FOR-SALE-IN-QUIJADA-GUADALUPE-CEBU-CITY-PHILIPPINES-TOWNHOUSE_6491355.jpg',14),(19,'properties/SD House 2.jpg',15),(20,'properties/lalique.jpg',16);
 /*!40000 ALTER TABLE `media` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,7 +164,7 @@ CREATE TABLE `properties` (
   `property_type` varchar(255) NOT NULL,
   `property_category` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
-  `postal` varchar(255) NOT NULL,
+  `postal` varchar(255) DEFAULT NULL,
   `price` varchar(255) NOT NULL,
   `negotiable` varchar(255) NOT NULL,
   `property_size` varchar(255) NOT NULL,
@@ -177,8 +177,12 @@ CREATE TABLE `properties` (
   `first_name` varchar(255) NOT NULL,
   `featured` varchar(255) NOT NULL,
   `agent_id` int(11) NOT NULL,
+  `latitude` varchar(45) DEFAULT NULL,
+  `longitude` varchar(45) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `date_created` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +191,7 @@ CREATE TABLE `properties` (
 
 LOCK TABLES `properties` WRITE;
 /*!40000 ALTER TABLE `properties` DISABLE KEYS */;
-INSERT INTO `properties` VALUES (1,'For Sale','House and Lot','Bacoor, Cavite','','4500000','No','220','Detached','4','2','1','2','','Rustine','featured/2.jpg',0),(2,'For Sale','House and Lot','Imus, Cavite','','3900000','Yes','190','Multi Storey','5','2','1','2','','Rustine','featured/1.jpg',0),(3,'For Sale','Condominium','Imus, Cavite','','3500000','No','60','Condo','1','1','1','1','','Rustine','featured/hampton-condo-for-sale-imus-cavite-deca-homes (5).jpg',0),(4,'For Sale','Apartment','Imus, Cavite','','800000','Yes','50','Townhouse','1','1','','1','','Rustine','featured/01-apecweb_projects-san-isidroTOWNHOUSE-units-floor-plan.jpg',0),(5,'For Sale','House and Lot','Bacoor, Cavite','','1400000','Yes','85','Rowhouse','2','1','','2','','Rustine','featured/bahay-kubo-different-types-kinds-styles-of-houses-in-philippines-rowhouses-towhouses (2).jpg',0),(6,'For Sale','House and Lot','Imus, Cavite','','2500000','No','120','Bungalow','3','2','1','1','','Rustine','featured/4-bungalow-shutterstock-555x370.jpg',0),(7,'For Sale','House and Lot','Bacoor, Cavite','','3200000','Yes','180','Multi Storey','5','2','1','2','','Rustine','featured/0002.jpg',0),(8,'For Sale','Apartment','Dasmarinas, Cavite','','1400000','No','70','Townhouse','3','3','','2','','Derick','featured/townhouse-plans-PHP2014011-perspective.jpg',0),(9,'For Sale','House and Lot','Imus, Cavite','','4800000','No','235','Multi-storey','3','2','1','2','','Derick','featured/1house.jpg',0),(10,'For Sale','House and Lot','Dasmarinas','','3300000','Yes','130','Attached','3','2','1','2','','Derick','featured/5-single-attached-555x369.jpg',0),(11,'For Sale','House and Lot','Bacoor, Cavite','','2800000','No','160','Bungalow','3','2','1','1','','Derick','featured/55dfd9e13297913fd809722ef25df99c--u-shaped-houses-cape-cod-houses.jpg',0),(12,'For Sale','House and Lot','Dasmarinas','','2100000','No','110','Bungalow','2','1','','1','','Derick','featured/1452472_708904225907516_3018693867875630168_n.jpg',0),(13,'For Sale','House and Lot','Imus, Cavite','','3100000','Yes','140','House & Lot','2','1','1','2','','Karl','featured/house-and-lot.jpg',0),(14,'For Sale','Apartment','Bacoor, Cavite','','1000000','No','40','Townhouse','2','1','','2','','Karl','featured/p_99_DREAM-HOMES-A-SINGLE-DETACHED-HOUSE-TOWNHOUSE-FOR-SALE-LOCATED-IN-QUIJADA-GUADALUPE-CEBU-CITY_c_2_TOWNHOUSE-FOR-SALE-IN-QUIJADA-GUADALUPE-CEBU-CITY-PHILIPPINES-TOWNHOUSE_6491355.jpg',0),(15,'For Sale','House and Lot','Dasmarinas, Cavite','','1600000','No','130','Single','3','2','1','2','','Karl','featured/SD House 2.jpg',0);
+INSERT INTO `properties` VALUES (1,'For Sale','House and Lot','Bacoor, Cavite','','4500000','No','220','Detached','4','2','1','2','','Rustine','featured/2.jpg',0,'14.416022','120.968860',0,NULL),(2,'For Sale','House and Lot','Imus, Cavite','','3900000','Yes','190','Multi Storey','5','2','1','2','','Rustine','featured/1.jpg',0,'14.416022','120.968860',0,NULL),(3,'For Sale','Condominium','Imus, Cavite','','3500000','No','60','Condo','1','1','1','1','','Rustine','featured/hampton-condo-for-sale-imus-cavite-deca-homes (5).jpg',0,'14.416022','120.968860',0,NULL),(4,'For Sale','Apartment','Imus, Cavite','','800000','Yes','50','Townhouse','1','1','','1','','Rustine','featured/01-apecweb_projects-san-isidroTOWNHOUSE-units-floor-plan.jpg',0,'14.416022','120.968860',0,NULL),(5,'For Sale','House and Lot','Bacoor, Cavite','','1400000','Yes','85','Rowhouse','2','1','','2','','Rustine','featured/bahay-kubo-different-types-kinds-styles-of-houses-in-philippines-rowhouses-towhouses (2).jpg',0,'14.416022','120.968860',0,NULL),(6,'For Sale','House and Lot','Imus, Cavite','','2500000','No','120','Bungalow','3','2','1','1','','Rustine','featured/4-bungalow-shutterstock-555x370.jpg',0,'14.416022','120.968860',0,NULL),(7,'For Sale','House and Lot','Bacoor, Cavite','','3200000','Yes','180','Multi Storey','5','2','1','2','','Rustine','featured/0002.jpg',0,'14.416022','120.968860',0,NULL),(8,'For Sale','Apartment','Dasmarinas, Cavite','','1400000','No','70','Townhouse','3','3','','2','','Derick','featured/townhouse-plans-PHP2014011-perspective.jpg',0,'14.416022','120.968860',0,NULL),(9,'For Sale','House and Lot','Imus, Cavite','','4800000','No','235','Multi-storey','3','2','1','2','','Derick','featured/1house.jpg',0,'14.416022','120.968860',0,NULL),(10,'For Sale','House and Lot','Dasmarinas','','3300000','Yes','130','Attached','3','2','1','2','','Derick','featured/5-single-attached-555x369.jpg',0,'14.416022','120.968860',0,NULL),(11,'For Sale','House and Lot','Bacoor, Cavite','','2800000','No','160','Bungalow','3','2','1','1','','Derick','featured/55dfd9e13297913fd809722ef25df99c--u-shaped-houses-cape-cod-houses.jpg',0,'14.416022','120.968860',0,NULL),(12,'For Sale','House and Lot','Dasmarinas','','2100000','No','110','Bungalow','2','1','','1','','Derick','featured/1452472_708904225907516_3018693867875630168_n.jpg',0,'14.416022','120.968860',0,NULL),(13,'For Sale','House and Lot','Imus, Cavite','','3100000','Yes','140','House & Lot','2','1','1','2','','Karl','featured/house-and-lot.jpg',0,'14.416022','120.968860',0,NULL),(14,'For Sale','Apartment','Bacoor, Cavite','','1000000','No','40','Townhouse','2','1','','2','','Karl','featured/p_99_DREAM-HOMES-A-SINGLE-DETACHED-HOUSE-TOWNHOUSE-FOR-SALE-LOCATED-IN-QUIJADA-GUADALUPE-CEBU-CITY_c_2_TOWNHOUSE-FOR-SALE-IN-QUIJADA-GUADALUPE-CEBU-CITY-PHILIPPINES-TOWNHOUSE_6491355.jpg',0,'14.416022','120.968860',0,NULL),(15,'For Sale','House and Lot','Dasmarinas, Cavite','','1600000','No','130','Single','3','2','1','2','','Karl','featured/SD House 2.jpg',0,'14.416022','120.968860',0,NULL),(16,'For Sale','House and Lot','Molino Bacoor',NULL,'3500000','No','150','House & Lot','4','3','1','2','','Dek','featured/lalique.jpg',1,'14.386211','120.998032',0,'01-24-2018');
 /*!40000 ALTER TABLE `properties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-24  0:30:29
+-- Dump completed on 2018-01-24 15:15:52
