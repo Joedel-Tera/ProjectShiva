@@ -24,6 +24,7 @@ $_SESSION['storey'] = $_POST['storey'];
 $_SESSION['additional'] = $_POST['additional'];
 $_SESSION['latitude'] = $_POST['latitude'];
 $_SESSION['longitude'] = $_POST['longitude'];
+$_SESSION['reservationFee'] = $_POST['reservationFee'];
 
 
 // Escape all $_POST variables to protect against SQL injections
@@ -45,7 +46,7 @@ $date_now = date('m-d-Y');
 $lat = $_POST['latitude'];
 $long = $_POST['longitude'];
 $userId = $_POST['userId'];
-
+$fee = $_POST['reservationFee'];
 
 
 if(isset($_POST['btn_save'])) {
@@ -55,10 +56,9 @@ if(isset($_POST['btn_save'])) {
     $file_path = "featured/" . $_FILES["featured"]["name"];
     move_uploaded_file($filetmp, $file_path);
 
-    $sql2 = "INSERT INTO properties (property_type, property_category, location, price, negotiable, property_size, property_title, bedrooms, bathrooms, garages, storey, additional, first_name, featured, date_created, latitude, longitude, agent_id)" 
-    . "VALUES ('$property_type', '$property_category', '$location', '$price', '$negotiable', '$property_size', '$property_title', '$bedrooms', '$bathrooms', '$garages', '$storey', '$additional', '$first_name', '$file_path', '$date_now', $lat, $long, $userId)";
+    $sql2 = "INSERT INTO properties (property_type, property_category, location, price, negotiable, property_size, property_title, bedrooms, bathrooms, garages, storey, additional, first_name, featured, date_created, latitude, longitude, agent_id, reservationFee)" 
+    . "VALUES ('$property_type', '$property_category', '$location', '$price', '$negotiable', '$property_size', '$property_title', '$bedrooms', '$bathrooms', '$garages', '$storey', '$additional', '$first_name', '$file_path', '$date_now', $lat, $long, $userId, $fee)";
     
-    var_dump($sql2);
     if(!$mysqli->query($sql2)){
       echo '<script type="text/javascript">alert("Ooops something went wrong")</script>';
       die();

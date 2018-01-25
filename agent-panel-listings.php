@@ -139,7 +139,7 @@ if(!$_SESSION["email"])
             <span class="pull-left" style="padding:20px 0px; font-size: 18px;">
                 <a href="agent-panel-profile.php">My Profile</a> > My Listings >
                 <a href="agent-panel-reservations.php">My Reservations</a> >
-                <a href="agent-panel-messages.php">My Messages</a>
+                <a href="agent-panel-messages.php">My Transactions</a>
             </span>
           </div>
     
@@ -159,7 +159,7 @@ if(!$_SESSION["email"])
                     <li><a href="agent-panel-profile.php">Profile</a></li>
                     <li class="active"><a href="agent-panel-listings.php">Property Listings</a></li>
                     <li><a href="agent-panel-reservations.php">House Reservations</a></li>
-                    <li><a href="agent-panel-messages.php">My Messages</a></li>
+                    <li><a href="agent-panel-messages.php">My Transactions</a></li>
                     <li class="nav-divider"></li>
                     <li><a href="logout.php"><i class="glyphicon glyphicon-off"></i>&nbsp Logout</a></li>
                 </ul>

@@ -87,7 +87,7 @@
 
             <ul style="margin-top: -10px;margin-left: 1032px;" class="dropdown-menu">
                 <li class="dropdown-header">Account Settings</li>
-                <li><a href="edit-profile.php">Profile</a></li>
+                <!-- <li><a href="edit-profile.php">Profile</a></li> -->
                 <li class="divider"></li>
                 <li class="dropdown-header">Done browsing?</li>
                 <li><a href="logout.php">Logout</a></li>

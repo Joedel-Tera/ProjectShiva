@@ -93,6 +93,7 @@ $(document).ready(function(){
     $("img").error(function(){
         $(this).attr('src', 'images/missing.png');
         $(this).attr('title', "Missing/Broken Image");
+        $(this).css('padding-left','20px');
     });
 });
 </script>

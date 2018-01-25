@@ -106,7 +106,7 @@ height: 100%;
         <?= $email ?>
     </p>
 
-    <a href="index-logged-in.php">
+    <a href="index.php">
         <button class="button button-block" name="logout">Start Browsing for Houses</button>
     </a>
     <br>

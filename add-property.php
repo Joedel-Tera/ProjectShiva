@@ -88,6 +88,9 @@ if(!$_SESSION["email"])
         {
             border-top:4px solid white;
         }
+        .labelPaddingTop {
+            padding-top: 5px;
+        }
         </style>
     
     
@@ -142,7 +145,7 @@ if(!$_SESSION["email"])
                    <h2>Add Property</h2><br>
                    
                  <div class="form-group">
-                    <label for="country" class="col-sm-3 control-label">Type:</label>
+                    <label for="country" class="col-sm-3 control-label labelPaddingTop">Type:</label>
                     <div class="col-sm-9">
                         <select name="property_type" id="property_type" class="form-control" required>
                             <option selected disabled>Select type...</option>
@@ -152,7 +155,7 @@ if(!$_SESSION["email"])
                     </div>
                 </div>            
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Category:</label>
+                    <label class="col-sm-3 control-label labelPaddingTop">Category:</label>
                     <div class="col-sm-9">
                         <select name="property_category" id="property_category" class="form-control" required>
                             <option selected disabled>Select category...</option>
@@ -163,7 +166,7 @@ if(!$_SESSION["email"])
                     </div>
                 </div> 
                 <div class="form-group">
-                    <label  class="col-sm-3 control-label">Location:</label>
+                    <label  class="col-sm-3 control-label labelPaddingTop">Location:</label>
                     <div class="col-sm-9">
                         <input type="text" name="location" id="location" placeholder="eg. Bacoor City, Cavite" class="form-control" autofocus required>
                     </div>
@@ -174,8 +177,8 @@ if(!$_SESSION["email"])
                         <input type="text" name="postal" id="postal" oninput="this.value=this.value.replace(/[^0-9]/g,'');" minlength="4" maxlength="4" placeholder="Postal Code" class="form-control" required>
                     </div>
                 </div>
- -->                <div class="form-group">
-                    <label for="password" class="col-sm-3 control-label">Price:</label>
+ -->            <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label labelPaddingTop">Price:</label>
                     <div class="col-sm-9">
                         <input type="text" name="price" id="price" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Price" class="form-control" required>
                     </div>
@@ -183,7 +186,7 @@ if(!$_SESSION["email"])
                 <div class="form-group">
                      <div style="margin-left: 140px;" class="checkbox">
                          Price negotiable?
-                        <label class="col-sm-12 control-label">
+                        <label class="col-sm-12 control-label labelPaddingTop">
                             <input type="radio" id="check" name="negotiable" value="Yes">
                            Yes
                         </label> 
@@ -194,19 +197,25 @@ if(!$_SESSION["email"])
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Property Size:</label>
+                    <label for="password" class="col-sm-3 control-label labelPaddingTop"> Reservation Fee </label>
+                    <div class="col-sm-9">
+                        <input type="text" name="reservationFee" id="reservationFee" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter Desired Reservation Fee" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label labelPaddingTop">Property Size:</label>
                     <div class="col-sm-9">
                         <input type="text" name="property_size" id="property_size" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Floor Area" class="form-control" required>
                     </div>
                 </div>    
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Property Title:</label>
+                    <label class="col-sm-3 control-label labelPaddingTop">Property Title:</label>
                     <div class="col-sm-9">
-                        <input type="text" name="property_title" id="property_title" placeholder="Property Name" maxlength="12" class="form-control" required>
+                        <input type="text" name="property_title" id="property_title" placeholder="Property Name" maxlength="15" class="form-control" required>
                     </div>
                 </div> 
                <div class="form-group">
-                    <label class="col-sm-3 control-label">Bedrooms:</label>
+                    <label class="col-sm-3 control-label labelPaddingTop">Bedrooms:</label>
                     <div class="col-sm-9">
                         <select name="bedrooms" id="bedrooms" class="form-control" required>
                             <option selected disabled>Select number of bedrooms...</option>
@@ -224,7 +233,7 @@ if(!$_SESSION["email"])
                     </div>
                 </div>    
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Bathrooms:</label>
+                    <label class="col-sm-3 control-label labelPaddingTop">Bathrooms:</label>
                     <div class="col-sm-9">
                         <select name="bathrooms" id="bathrooms" class="form-control" required>
                             <option selected disabled>Select number of bathrooms...</option>
@@ -242,7 +251,7 @@ if(!$_SESSION["email"])
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Garages:</label>
+                    <label class="col-sm-3 control-label labelPaddingTop">Garages:</label>
                     <div class="col-sm-9">
                         <select name="garages" id="garages" class="form-control">
                             <option selected disabled>Select number of garages...</option>
@@ -255,13 +264,13 @@ if(!$_SESSION["email"])
                     </div>
                 </div>   
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">No. of Storey:</label>
+                    <label class="col-sm-3 control-label labelPaddingTop">No. of Storey:</label>
                     <div class="col-sm-9">
                         <input type="text" name="storey" id="storey" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Floors" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Additional Features:</label>
+                    <label class="col-sm-4 control-label labelPaddingTop">Additional Features:</label>
                     <div class="col-sm-8">
                         <input type="text" name="additional" id="additional" placeholder="eg. Swimming Pool, Jacuzzi, Air Condition" class="form-control">
                     </div>

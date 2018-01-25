@@ -1,12 +1,15 @@
 <?php
 session_start();
-include_once 'headertop.php';?>
-<?php require 'db.php';?>
+include_once 'headertop.php';
+require 'db.php';
 
-<?php
 /* Registration process, inserts user info into the database 
    and sends account confirmation email message
  */
+
+$getnextUserId = $mysqli->query("SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = 'agents'");
+
+$response = $getnextUserId->fetch_assoc()['AUTO_INCREMENT'];
 
 // Set session variables to be used on profile.php page
 $_SESSION['first_name'] = $_POST['first_name'];
@@ -20,6 +23,8 @@ $_SESSION['contact_number'] = $_POST['contact_number'];
 $_SESSION['email_info'] = $_POST['email_info'];
 $_SESSION['landline'] = $_POST['landline'];
 $_SESSION['email'] = $_POST['email'];
+$_SESSION['id'] = $response;
+$_SESSION['user_type'] = 2;
 
 
 // Escape all $_POST variables to protect against SQL injections

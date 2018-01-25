@@ -134,7 +134,7 @@ if(!$_SESSION["email"])
 <div class="container">
 <div class="spacer">
 <div class="row">
-          <span class="pull-left">My Profile &nbsp>&nbsp <a href="agent-panel-listings.php">My Listings</a> &nbsp>&nbsp <a href="agent-panel-reservations.php">My Reservations</a> &nbsp>&nbsp <a href="agent-panel-messages.php">My Messages</a> </span>
+          <span class="pull-left">My Profile &nbsp>&nbsp <a href="agent-panel-listings.php">My Listings</a> &nbsp>&nbsp <a href="agent-panel-reservations.php">My Reservations</a> &nbsp>&nbsp <a href="agent-panel-messages.php">My Transactions</a> </span>
     <br>
     <br><br>
     
@@ -165,7 +165,7 @@ if(!$_SESSION["email"])
                     <li class="active"><a href="agent-panel-profile.php">Profile</a></li>
                     <li><a href="agent-panel-listings.php">Property Listings</a></li>
                     <li><a href="agent-panel-reservations.php">House Reservations</a></li>
-                    <li><a href="agent-panel-messages.php">My Messages</a></li>
+                    <li><a href="agent-panel-messages.php">My Transactions</a></li>
                     <li class="nav-divider"></li>
                     <li><a href="logout.php"><i class="glyphicon glyphicon-off"></i>&nbsp Logout</a></li>
                 </ul>

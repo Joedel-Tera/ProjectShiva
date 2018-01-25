@@ -60,6 +60,17 @@ if(isset($_POST['declined'])){
 	echo $response;
 }
 
+if(isset($_POST['reservationId'])){
+
+	$sql2 = "UPDATE property_reservations SET reservation_status = 'APPROVED' WHERE reservation_id = '".$_POST['reservationId']."'";
+	$result = $mysqli->query($sql2);
+	if($result){
+		$response = json_encode(array('result'=>true));
+	}
+		
+
+	echo $response;
+}
 
 
 ?>

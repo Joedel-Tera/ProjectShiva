@@ -130,98 +130,128 @@ if(!$_SESSION["email"])
 <div class="container">
 <div class="spacer">
 <div class="row">
-    <span class="pull-left"><a href="agent-panel-profile.php">My Profile</a> &nbsp>&nbsp <a href="agent-panel-listings.php">My Listings</a> &nbsp>&nbsp My Reservations&nbsp>&nbsp <a href="agent-panel-messages.php">My Messages</a> </span>
-    <br>
-    <br><br>
+          <div class="container">
+            <span class="pull-left" style="padding:20px 0px; font-size: 18px;">
+                <a href="agent-panel-profile.php">My Profile</a> > 
+                <a href="agent-panel-listings.php">My Listings </a> > My Reservations >
+                <a href="agent-panel-messages.php">My Transactions</a>
+            </span>
+          </div>
     
 
-    
+<div style="overflow-x: hidden;" class="row">
+<div class="panel panel-default">
+    <div class="panel-heading"> 
+        <blockquote style="background-color: #E8E8E8;" class="blockquote">
+            <p class="mb-0">User Profile</p>
+        </blockquote>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">
+                <i><h6 style="color: #b0b0b0;">Main Navigation</h6></i>
+                    <nav class="nav-sidebar">
+                        <ul class="nav">
+                            <li><a href="agent-panel-profile.php">Profile</a></li>
+                            <li><a href="agent-panel-listings.php">Property Listings</a></li>
+                            <li class="active"><a href="agent-panel-reservations.php">House Reservations</a></li>
+                            <li><a href="agent-panel-messages.php">My Transactions</a></li>
+                            <li class="nav-divider"></li>
+                            <li><a href="logout.php"><i class="glyphicon glyphicon-off"></i>&nbsp Logout</a></li>
+                        </ul>
+                    </nav>
+                <br>
+                <br>
+            </div>
+                                          
+            <div class="col-md-10">
+                <div class="row" style="padding: 20px 10px 30px 40px;">
+                    <blockquote style="background-color: #ddd;"><h3> My Reservations </h3></blockquote>
+                    <?php 
+                    $sql = "SELECT * FROM property_reservations as pr INNER JOIN properties as prop ON property_id = prop.id INNER JOIN agents as agent ON pr.agent_id = agent.id WHERE pr.agent_id = '".$_SESSION['id']."'";
+                    $result = $mysqli->query($sql); 
+                    ?>      
+                    
+                    <div class="col-md-12">
+                        <table id="listings" class="table table-striped" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th> Name </th>
+                                    <th> Customer No. </th>
+                                    <th> Category </th>
+                                    <th> Res. Fee </th>
+                                    <th> Status </th>
+                                    <th> Action </th>
+                                </tr>
+                            </thead>
 
-    
-             <div style="overflow-x: hidden;" class="row">
-              <div class="panel panel-default">
-              <div class="panel-heading"> 
-                  <blockquote style="background-color: #E8E8E8;" class="blockquote">
-                        <p class="mb-0">User Profile</p>
-                    </blockquote>
-                  </div>
-               <div class="panel-body">
-              <div class="col-md-2 col-xs-9 col-sm-5 col-lg-2">
-                  <i><h6 style="color: #b0b0b0;">Main Navigation</h6></i>
-            <nav class="nav-sidebar">
-                <ul class="nav">
-                    <li><a href="agent-panel-profile.php">Profile</a></li>
-                    <li><a href="agent-panel-listings.php">Property Listings</a></li>
-                    <li class="active"><a href="agent-panel-reservations.php">House Reservations</a></li>
-                    <li><a href="agent-panel-messages.php">My Messages</a></li>
-                    <li class="nav-divider"></li>
-                    <li><a href="logout.php"><i class="glyphicon glyphicon-off"></i>&nbsp Logout</a></li>
-                </ul>
-            </nav>
-            <br>
-            <br>
-              </div>
-                   
-        
-                   
-              <div style="margin-left: 40px;" class="col-md-10 col-xs-10 col-sm-10 col-lg-9" >
-                  <div class="container" >
-                    <blockquote style="background-color: #ddd; width: 900px;"><h3>My Listings</h3></blockquote>
-                  </div>
-                   <hr>
-                        
-                  
-                  
-        <?php 
-            $sql = "SELECT * FROM property_reservations as pr INNER JOIN properties as prop ON property_id = prop.id INNER JOIN agents as agent ON pr.agent_id = agent.id WHERE pr.agent_id = '".$_SESSION['id']."'";
-            $result = $mysqli->query($sql); 
-
-        ?>      
-                  
-                
-                    <table id="listings" class="table table-striped" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Customer Name</th>
-                                <th>Customer Email</th>
-                                <th>Customer No.</th>
-                                <th>Property Category</th>
-                                <th>Property Type</th>
-                                <th>Status</th>
-                                <th> Action </th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                           <?php while($row = $result->fetch_assoc()){  ?>
-                            <tr>
-                                <td><?php echo $row['customer_name']; ?></td>
-                                <td><?php echo $row['customer_email']; ?></td>
-                                <td><?php echo $row['customer_number']; ?></td>
-                                <td><?php echo $row['property_category']; ?></td>
-                                <td><?php echo $row['property_type']; ?></td>
-                                <td><?php echo $row['reservation_status']; ?></td>
-                                <td>
-                                <?php if($row['reservation_status'] == '') { ?>
-                                <input type="hidden" class="propId" value="<?php echo $row['property_id']; ?>"><input type="hidden" class="reservationId" value="<?php echo $row['reservation_id']; ?>">
-                                <button class="soldAction btn" style="font-size: 14px;" href="">Sold </button>
-                                <button class="declineAction btn" style="font-size: 14px;" href="">Decline </button>
+                            <tbody>
+                                <?php while($row = $result->fetch_assoc()){  ?>
+                                <tr>
+                                    <td><?php echo $row['customer_name']; ?></td>
+                                    <td><?php echo $row['customer_number']; ?></td>
+                                    <td><?php echo $row['property_category']; ?></td>
+                                    <td>₱ <?php echo $row['reservationFee']; ?></td>
+                                    <td><?php echo $row['reservation_status']; ?></td>
+                                    <td>
+                                    <?php if($row['reservation_status'] == '') { ?>
+                                    <input type="hidden" class="propId" value="<?php echo $row['property_id']; ?>">
+                                    <input type="hidden" class="reservationId" value="<?php echo $row['reservation_id']; ?>">
+                                    <button class="approvedAction btn" style="font-size: 14px;" href="">Approved </button>
+                                    <button class="soldAction btn" style="font-size: 14px;" href="">Sold </button>
+                                    <button class="declineAction btn" style="font-size: 14px;" href="">Decline </button>
+                                    <?php } else if ($row['reservation_status'] == 'APPROVED') { ?>
+                                    <input type="hidden" class="propId" value="<?php echo $row['property_id']; ?>">
+                                    <input type="hidden" class="reservationId" value="<?php echo $row['reservation_id']; ?>">
+                                    <button class="soldAction btn" style="font-size: 14px;" href="">Sold </button>
+                                    <button class="declineAction btn" style="font-size: 14px;" href="">Decline </button>
+                                    <?php } ?>
+                                    </td>
+                                </tr>
                                 <?php } ?>
-                                </td>
-                            </tr>
-                           <?php } ?>
-                        </tbody>
-                    </table>
-                
-              </div>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <div style="clear:both;"> </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
                  
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script>
             $(document).ready(function(){
                 $('#listings').DataTable({
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                });
+                $('.approvedAction').each(function(){
+                    var _this = $(this);
+                    
+                   _this.on('click',function(){
+                    var propId = _this.parent().find('.propId').val();
+                    var reservationId = _this.parent().find('.reservationId').val();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'ajaxFunctions.php',
+                            data: {
+                                'reservationId' : reservationId
+                            },
+                            dataType: 'json',
+                            success: function(data){
+
+                               if(data.result){
+                                alert("Status Updated Wait for the page to reload.");
+                                    setTimeout(function(){// wait for 5 secs(2)
+                                        location.reload(); // then reload the page.(3)
+                                    }, 3000);
+                               } else {
+                                 alert("Error Occurred Please Try again later.");
+                               }
+                            }
+                        });
+                   });
                 });
                 $('.soldAction').each(function(){
                     var _this = $(this);

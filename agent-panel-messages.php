@@ -134,7 +134,7 @@ if(!$_SESSION["email"])
             <span class="pull-left" style="padding:20px 0px;font-size:18px">
                 <a href="agent-panel-profile.php">My Profile</a> > 
                 <a href="agent-panel-listings.php">My Listings</a> >
-                <a href="agent-panel-reservations.php">My Reservations</a> > My Messages
+                <a href="agent-panel-reservations.php">My Reservations</a> > My Transactions
             </span>
         </div>
 
@@ -153,7 +153,7 @@ if(!$_SESSION["email"])
                     <li><a href="agent-panel-profile.php">Profile</a></li>
                     <li><a href="agent-panel-listings.php">Property Listings</a></li>
                     <li><a href="agent-panel-reservations.php">House Reservations</a></li>
-                    <li class="active"><a href="agent-panel-messages.php">My Messages</a></li>
+                    <li class="active"><a href="agent-panel-messages.php">My Transactions</a></li>
                     <li class="nav-divider"></li>
                     <li><a href="logout.php"><i class="glyphicon glyphicon-off"></i>&nbsp Logout</a></li>
                 </ul>
@@ -166,33 +166,34 @@ if(!$_SESSION["email"])
                    
               <div style="margin-left: 40px;" class="col-md-10 col-xs-10 col-sm-10 col-lg-9" >
                   <div class="container" >
-                    <blockquote style="background-color: #ddd; width: 900px;"><h3>My Listings</h3></blockquote>
+                    <blockquote style="background-color: #ddd; width: 900px;"><h3>My Transactions</h3></blockquote>
                   </div>
                    <hr> 
         <?php 
-            $sql = "SELECT properties.`first_name`, agents_reservation.* FROM properties LEFT JOIN agents_reservation ON properties.`first_name` = agents_reservation.`agent` WHERE properties.`first_name` = '".$_SESSION["first_name"]."' GROUP BY id";
+            $agentID = $_SESSION['id'];
+            $sql = "SELECT * FROM reservation_payments as rp INNER JOIN properties ON id = property_id WHERE rp.agent_id = $agentID";
             $result = $mysqli->query($sql); 
         ?>      
                     <table id="listings" class="table table-striped table-hover" cellspacing="0" width="900px">
                         <thead>
                             <tr>
-                                <th>User</th>
-                                <th>User Email</th>
-                                <th>Contact Number</th>
-                                <th>Message</th>
-                                <th>Actions</th>
+                                <th> Property ID </th>
+                                <th> Property Details </th>
+                                <th> Reservation Fee </th>
+                                <th> Amount Paid By Customer </th>
+                                <th> Reference Number </th>
+                                <th> Actions </th>
                             </tr>
                         </thead>
                         <tbody>
                            <?php while($row = $result->fetch_assoc()){  ?>
                             <tr>
-                                <form action="sms-notif.php" method="POST">
-                                    <td><?php echo $row['full_name']; ?></td>
-                                    <td><?php echo $row['email']; ?></td>
-                                    <td><p style="display: none;"><?php echo $row['contact_number']; ?></p><input style="border: 0px; background-color: white;" type="text" disabled name="contact_number" value="<?php echo $row['contact_number']; ?>"></td>
-                                    <td><?php echo $row['message']; ?></td>
-                                    <td><button class="btn-success" type="submit" name="send">Approve</button><a style="font-size: 13px; color: currentColor;" href="#"><u>Decline</u></a></td>
-                                </form>
+                                <td><?php echo $row['property_id']; ?></td>
+                                <td><?php echo $row['property_type'].' ~ '.$row['property_category']; ?> </td>
+                                <td><?php echo $row['reservationFee']; ?></td>
+                                <td><?php echo $row['amount']; ?></td>
+                                <td><?php echo $row['reference_number']; ?></td>
+                                <td></td>
                             </tr>
                            <?php } ?>
                         </tbody>

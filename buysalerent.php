@@ -2,6 +2,11 @@
 session_start();
 require 'db.php';
 include 'headertop.php';
+
+if(isset($_SESSION['alert'])){
+	echo "<script type='text/javascript'>alert('Successfully Reserved!')</script>";
+}
+unset($_SESSION['alert']);
 ?>
 
 <html>
@@ -24,6 +29,7 @@ include 'headertop.php';
 				source: availableTags
 			});
 		});
+		
 		</script>
 	</head>
 

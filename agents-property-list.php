@@ -1,8 +1,7 @@
 <?php 
-
-require_once('db.php');
 session_start();
-
+require_once('db.php');
+include 'headertop.php';
 
 
 
@@ -10,45 +9,25 @@ if(isset($_GET['id'])){
 	$agentId = $_GET['id'];
     $sql = "SELECT id,first_name, middle_name, last_name, address, bday, age, gender, contact_number, email_info, landline, email, password, avatar, date_created FROM agents WHERE id = $agentId";
     $result = $mysqli->query($sql);
-    $row = mysqli_fetch_assoc($result);
+    $agentData = mysqli_fetch_assoc($result);
 } else {
 	Header("Location: agents.php");
 }
 
-include 'headertop.php';
-
+if(isset($_SESSION['alert'])){
+	echo "<script type='text/javascript'>alert('Payment Information Submitted!')</script>";
+}
+unset($_SESSION['alert']);
 ?>
 
+
+
 <body>
-
-<?php if(isset($_SESSION['first_name'])) { ?> 
-<!-- #Header Starts -->
-      
-<div class="container">
-    <div class="dropdown" style="z-index:11;">
-
-    <button style="background-color: #000; font-color: white; float: right; margin-right: -50px; margin-top: -170px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-    <span style="color: white" class="glyphicon glyphicon-user "><?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?></span>
-
-    &nbsp;&nbsp;
-    <span class="caret white"></span>
-    </button>
-
-    <ul style=" margin-top: -140px; margin-left: 1032px;" class="dropdown-menu">
-    <li class="dropdown-header">Account Settings</li>
-    <li><a href="edit-profile.php">Profile</a></li>
-    <li class="divider"></li>
-    <li class="dropdown-header">Done browsing?</li>
-    <li><a href="logout.php">Logout</a></li>
-    </ul>
-    </div>
-</div>
-<?php } ?>
 
 <!-- banner -->
 <div class="inside-banner">
   <div class="container"> 
-	<h2> <?php echo $row['first_name'].' '.$row['last_name']; ?> Property Listings</h2>
+	<h2> <?php echo $agentData['first_name'].' '.$agentData['last_name']; ?> Property Listings</h2>
 </div>
 </div>
 <!-- banner -->
@@ -70,7 +49,7 @@ include 'headertop.php';
 						<div class="properties">
 							<a href="property-detail.php?id=<?php echo $row['id'] ?>"> 
 								<div class="image-holder">
-									<img src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties">
+									<img src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties" style="height:190px;">
 								</div>
 								<?php $row['id'] ?>
 								<h4><?php echo $row['property_title']; ?></h4>
@@ -87,7 +66,21 @@ include 'headertop.php';
 							<?php if($row['status'] == 0) { ?>
 							<a class="btn btn-primary" href="property-detail.php?id=<?php echo $row['id'] ?>">View Details</a>
 							<?php } else if ($row['status'] == 3) { ?>
-							<button class="btn btn-default" disabled> Already Reserved </button>
+								<?php 
+									$reservedBy = "SELECT * FROM property_reservations WHERE property_id = ".$row['id'];
+									$getRes = $mysqli->query($reservedBy);
+									$myRow = mysqli_fetch_assoc($getRes);
+									if($myRow['user_id'] == $_SESSION['id']){
+								?>
+									<?php if($myRow['reservation_status'] == 'APPROVED') { ?> 
+									<button class="btn btn-default" disabled> Reserved By Me </button> 
+									<?php } else if ($myRow['reservation_status'] == '') { ?>
+									<input type="hidden" class="propertyId" value="<?php echo $row['id']; ?>">
+									<button class="btn btn-primary payFee"> Pay Reservation Fee </button>
+									<?php } ?>
+								<?php } else { ?>
+									<button class="btn btn-default" disabled> Already Reserved </button>
+								<?php } ?>
 							<?php } else { ?>
 							<button class="btn btn-default" disabled> No Longer Available </button>
 							<?php } ?>
@@ -107,7 +100,63 @@ include 'headertop.php';
 	</div>
 </div>
 	
-	
+<div id="showPaymentForm" class="modal fade" role="dialog">
+	<div class="modal-dialog" style="top:15%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 style="display:inline;"> Payment Reservation Information </h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<form method="post" action="payment-process.php">
+								<div class="form-group">
+				                    <label for="agentName" class="col-sm-3 col-sm-offset-2 control-label">Agent Name:</label>
+				                    <div class="col-sm-6">
+				                    	
+				                        <input type="text" name="agentName" class="form-control" value="<?php echo $agentData['first_name'].' '.$agentData['last_name']; ?>" readonly>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="agentName" class="col-sm-3 col-sm-offset-2 control-label"> Payment Reference No:</label>
+				                    <div class="col-sm-6">
+				                        <input type="text" name="paymentReference" class="form-control" required>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                    <label for="agentName" class="col-sm-3 col-sm-offset-2 control-label"> Amount </label>
+				                    <div class="col-sm-6">
+				                        <input type="text" name="amount" class="form-control" placeholder="Reservation Fee" required>
+				                    </div>
+				                </div>
+				                <div class="form-group">
+				                	<div class="col-sm-6 col-sm-offset-3">
+				                		<input type="hidden" name="agentId" value="<?php echo $agentData['id']; ?>">
+				                		<input type="hidden" id="propertyId" name="propertyId" value="<?php echo $row['id']; ?>">
+				                		<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
+				                		<button type="submit" class="btn btn-primary" name="paymentDetails"> Submit Transaction </button>
+				                	</div>
+				                </div>
+							</form>
+						</div>
+					</div>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('.payFee').each(function(){
+		var _this = $(this);
+		_this.on('click', function(){
+			var propId = _this.parent().find('.propertyId').val();
+			$('#propertyId').val(propId);
+			$('#showPaymentForm').modal('show');
+		});
+	});
+</script>	
 </body>
 
 <?php include'footer.php';?>

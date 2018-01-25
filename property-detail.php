@@ -95,6 +95,10 @@ require_once 'db.php';
                 width: 100%;
             }
         }
+        .reservationFee {
+          color:#72b70f;
+          font-weight: 500;
+        }
     </style>
   </head>
 
@@ -234,8 +238,9 @@ require_once 'db.php';
   </div>
   <div class="col-lg-4">
       <div class="col-lg-12  col-sm-6">
-        <div class="property-info">
-          <p class="price">₱<?php echo $row['price'] ?></p>
+        <div class="property-info" style="text-align:center;">
+          <p class="price">₱<?php echo $row['price']; ?></p>
+          
           <p class="area"><span class="glyphicon glyphicon-map-marker"></span> <?php echo $row['location'] ?></p>
             <?php } ?>
         </div>
@@ -245,9 +250,17 @@ require_once 'db.php';
                 $result = $mysqli->query($sql); 
             ?>  
     </div>
+<?php 
+$agentId = $row['agent_id'];
+$getAgentContact = "SELECT * FROM agents WHERE id = $agentId";
+$response = $mysqli->query($getAgentContact);
+$agentContact = $response->fetch_assoc()['contact_number'];
+
+?>
 <?php if(isset($_SESSION['first_name'])) { ?> 
 <div class="col-lg-12 col-sm-6 "> 
   <div class="enquiry">
+    <h3 style="text-align:center;"> Rervation Fee <p class="reservationFee">₱<?php echo $row['reservationFee']; ?></p></h3>
     <h6><span class="glyphicon glyphicon-envelope"></span> A message will be sent to the  <h6 style="margin-top: -7px; margin-left: 20px;">Broker/Agent on your behalf.</h6></h6>
     <form action="reserve_property.php" method="post" role="form">
     <?php if($row = $result->fetch_assoc()){  ?>
@@ -257,6 +270,8 @@ require_once 'db.php';
     <textarea rows="6" name="message" class="form-control" placeholder="Please contact me regarding to this house" style="resize:none;"></textarea>
     <input type="hidden" name="agentId" value="<?php echo $row['agent_id']; ?>">
     <input type="hidden" name="propertyId" value="<?php echo $row['id']; ?>">
+    <input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
+    <input type="hidden" name="agentContact" value="<?php echo $agentContact; ?>">
     <button type="submit" class="btn btn-primary" name="Submit">Reserve this property</button>
     <?php } ?>
     </form>
