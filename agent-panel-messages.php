@@ -130,14 +130,14 @@ if(!$_SESSION["email"])
 <div class="container">
 <div class="spacer">
 <div class="row">
-    <span class="pull-left"><a href="agent-panel-profile.php">My Profile</a> &nbsp>&nbsp <a href="agent-panel-listings.php">My Listings</a> &nbsp>&nbsp <a href="agent-panel-reservations.php">My Reservations</a> &nbsp>&nbsp My Messages </span>
-    <br>
-    <br><br>
-    
+        <div class="container">
+            <span class="pull-left" style="padding:20px 0px;font-size:18px">
+                <a href="agent-panel-profile.php">My Profile</a> > 
+                <a href="agent-panel-listings.php">My Listings</a> >
+                <a href="agent-panel-reservations.php">My Reservations</a> > My Messages
+            </span>
+        </div>
 
-    
-
-    
              <div style="overflow-x: hidden;" class="row">
               <div class="panel panel-default">
               <div class="panel-heading"> 

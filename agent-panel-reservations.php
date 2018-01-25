@@ -17,7 +17,7 @@ if(!$_SESSION["email"])
             <title>Agent Profile</title>
           <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" /> 
      
     
                 <style>
@@ -187,6 +187,7 @@ if(!$_SESSION["email"])
                                 <th>Customer No.</th>
                                 <th>Property Category</th>
                                 <th>Property Type</th>
+                                <th>Status</th>
                                 <th> Action </th>
                             </tr>
                         </thead>
@@ -199,7 +200,14 @@ if(!$_SESSION["email"])
                                 <td><?php echo $row['customer_number']; ?></td>
                                 <td><?php echo $row['property_category']; ?></td>
                                 <td><?php echo $row['property_type']; ?></td>
-                                <td> </td>
+                                <td><?php echo $row['reservation_status']; ?></td>
+                                <td>
+                                <?php if($row['reservation_status'] == '') { ?>
+                                <input type="hidden" class="propId" value="<?php echo $row['property_id']; ?>"><input type="hidden" class="reservationId" value="<?php echo $row['reservation_id']; ?>">
+                                <button class="soldAction btn" style="font-size: 14px;" href="">Sold </button>
+                                <button class="declineAction btn" style="font-size: 14px;" href="">Decline </button>
+                                <?php } ?>
+                                </td>
                             </tr>
                            <?php } ?>
                         </tbody>
@@ -209,13 +217,71 @@ if(!$_SESSION["email"])
         </div>
     </div>
                  
-        <script type="text/javascript" src="jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script>
-/*            $(document).ready(function(){
-            $('#listings').DataTable({
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            $(document).ready(function(){
+                $('#listings').DataTable({
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                });
+                $('.soldAction').each(function(){
+                    var _this = $(this);
+                    
+
+                   _this.on('click',function(){
+                    var propId = _this.parent().find('.propId').val();
+                    var reservationId = _this.parent().find('.reservationId').val();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'ajaxFunctions.php',
+                            data: {
+                                'soldStatus' : propId,
+                                'reservationId' : reservationId
+                            },
+                            dataType: 'json',
+                            success: function(data){
+
+                               if(data.result){
+                                alert("Status Updated Wait for the page to reload.");
+                                    setTimeout(function(){// wait for 5 secs(2)
+                                        location.reload(); // then reload the page.(3)
+                                    }, 3000);
+                               } else {
+                                 alert("Error Occurred Please Try again later.");
+                               }
+                            }
+                        });
+                   });
+                });
+                $('.declineAction').each(function(){
+                    var _this = $(this);
+
+
+                   _this.on('click',function(){
+                    var propId = _this.parent().find('.propId').val();
+                    var reservationId = _this.parent().find('.reservationId').val();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'ajaxFunctions.php',
+                            data: {
+                                'declined' : propId,
+                                'reservationId' : reservationId
+                            },
+                            dataType: 'json',
+                            success: function(data){
+
+                               if(data.result){
+                                alert("Status Updated Wait for the page to reload.");
+                                    setTimeout(function(){// wait for 5 secs(2)
+                                        location.reload(); // then reload the page.(3)
+                                    }, 3000);
+                               } else {
+                                 alert("Error Occurred Please Try again later.");
+                               }
+                            }
+                        });
+                   });
+                });
             });
-            });*/
         </script>
     </div>
 </div>

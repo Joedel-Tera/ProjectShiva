@@ -253,9 +253,9 @@ if(!$_SESSION["email"])
 </div>
 </div>
          <?php } ?>
-<!--
-        <script type="text/javascript" src="js/jquery.tabledit.min.js"></script>
-<script>
+
+      <!--   <script type="text/javascript" src="js/jquery.tabledit.min.js"></script> -->
+<!-- <script>
         $('#myTable').Tabledit({
     url: 'update.php',
     deleteButton: false,
@@ -273,8 +273,8 @@ if(!$_SESSION["email"])
         editable: [[1, 'address'], [2, 'bday'], [3, 'age'], [4, 'gender'], [5, 'contact_number'], [6, 'landline'], [7, 'email_info']]
     }
 });
-        </script>
--->
+        </script> -->
+
     </body>
 </html>
 

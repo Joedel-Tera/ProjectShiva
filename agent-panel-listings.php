@@ -17,7 +17,7 @@ if(!$_SESSION["email"])
             <title>Agent Profile</title>
           <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />  
     
      
     
@@ -135,15 +135,16 @@ if(!$_SESSION["email"])
 <div class="container">
 <div class="spacer">
 <div class="row">
-          <span class="pull-left"><a href="agent-panel-profile.php">My Profile</a> &nbsp>&nbsp My Listings &nbsp>&nbsp <a href="agent-panel-reservations.php">My Reservations</a> &nbsp>&nbsp <a href="agent-panel-messages.php">My Messages</a> </span>
-    <br>
-    <br><br>
+          <div class="container">
+            <span class="pull-left" style="padding:20px 0px; font-size: 18px;">
+                <a href="agent-panel-profile.php">My Profile</a> > My Listings >
+                <a href="agent-panel-reservations.php">My Reservations</a> >
+                <a href="agent-panel-messages.php">My Messages</a>
+            </span>
+          </div>
     
 
-    
-
-    
-             <div style="overflow-x: hidden;" class="row">
+         <div style="overflow-x: hidden;" class="row">
               <div class="panel panel-default">
               <div class="panel-heading"> 
                   <blockquote style="background-color: #E8E8E8;" class="blockquote">
@@ -224,15 +225,13 @@ if(!$_SESSION["email"])
                                     ?>
                                 </td>
                                 <td>
+                                    <input type="hidden" id="propId" value="<?php echo $row['id']; ?>">
                                     <?php if ($row['status'] == 0) { ?>
-                                    <a class="hideAction" style="font-size: 14px;" href="#"><u>Hide</u></a> &nbsp
-                                    <a class="removeAction" style="font-size: 14px; color: #FA5252;" href="#"><u>Remove</u></a>   
+                                    <button class="hideAction btn" style="font-size: 14px;" href="#">Hide</button> &nbsp
+                                    <button class="removeAction btn" style="font-size: 14px; color: #FA5252;" href="#">Remove</button>   
                                     <?php } else if ($row['status'] == 1) { ?>
-                                    <a class="showAction" style="font-size: 14px;" href=""><u>Show</u></a> &nbsp
-                                    <a class="removeAction" style="font-size: 14px; color: #FA5252;" href="#"><u>Remove </u></a>                                              
-                                    <?php } else if ($row['status'] == 3) { ?>
-                                    <a class="soldAction" style="font-size: 14px;" href=""><u>Sold</u></a> &nbsp
-                                    <a class="relistAction" style="font-size: 14px;" href="#"><u>Re-List</u></a>
+                                    <button class="relistAction btn" style="font-size: 14px;" href="">Show</button> &nbsp
+                                    <button class="removeAction btn" style="font-size: 14px; color: #FA5252;" href="#"> Remove </button>
                                     <?php } ?>
                                </td>
                             </tr>
@@ -244,12 +243,112 @@ if(!$_SESSION["email"])
         </div>
     </div>
                  
-        <script type="text/javascript" src="jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script>
             $(document).ready(function(){
-            $('#listings').DataTable({
-                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            });
+                $('#listings').DataTable({
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                });
+                $('.soldAction').each(function(){
+                    var _this = $(this);
+                    var propId = $('#propId').val();
+                   _this.on('click',function(){
+                        $.ajax({
+                            type: 'POST',
+                            url: 'ajaxFunctions.php',
+                            data: {
+                                'soldStatus' : propId
+                            },
+                            dataType: 'json',
+                            success: function(data){
+
+                               if(data.result){
+                                alert("Status Updated Wait for the page to reload.");
+                                    setTimeout(function(){// wait for 5 secs(2)
+                                        location.reload(); // then reload the page.(3)
+                                    }, 3000);
+                               } else {
+                                 alert("Error Occurred Please Try again later.");
+                               }
+                            }
+                        });
+                   });
+                });
+                $('.hideAction').each(function(){
+                    var _this = $(this);
+                    var propId = $('#propId').val();
+                   _this.on('click',function(){
+                        $.ajax({
+                            type: 'POST',
+                            url: 'ajaxFunctions.php',
+                            data: {
+                                'hideStatus' : propId
+                            },
+                            dataType: 'json',
+                            success: function(data){
+
+                               if(data.result){
+                                alert("Status Updated!");
+                                    setTimeout(function(){// wait for 5 secs(2)
+                                        location.reload(); // then reload the page.(3)
+                                    }, 1500);
+                               } else {
+                                 alert("Error Occurred Please Try again later.");
+                               }
+                            }
+                        });
+                   });
+                });
+                $('.relistAction').each(function(){
+                    var _this = $(this);
+                    var propId = $('#propId').val();
+                   _this.on('click',function(){
+                        $.ajax({
+                            type: 'POST',
+                            url: 'ajaxFunctions.php',
+                            data: {
+                                'showStatus' : propId
+                            },
+                            dataType: 'json',
+                            success: function(data){
+
+                               if(data.result){
+                                alert("Status Updated!");
+                                    setTimeout(function(){// wait for 5 secs(2)
+                                        location.reload(); // then reload the page.(3)
+                                    }, 1500);
+                               } else {
+                                 alert("Error Occurred Please Try again later.");
+                               }
+                            }
+                        });
+                   });
+                });
+                $('.removeAction').each(function(){
+                    var _this = $(this);
+                    var propId = $('#propId').val();
+                   _this.on('click',function(){
+                        $.ajax({
+                            type: 'POST',
+                            url: 'ajaxFunctions.php',
+                            data: {
+                                'removeStatus' : propId
+                            },
+                            dataType: 'json',
+                            success: function(data){
+
+                               if(data.result){
+                                alert("Status Updated!");
+                                    setTimeout(function(){// wait for 5 secs(2)
+                                        location.reload(); // then reload the page.(3)
+                                    }, 1500);
+                               } else {
+                                 alert("Error Occurred Please Try again later.");
+                               }
+                            }
+                        });
+                   });
+                });
             });
         </script>
     </div>
