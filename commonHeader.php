@@ -1,7 +1,7 @@
 
 
-<?php if(isset($_SESSION['user_type']) == '2') { ?>
-<nav class="navbar navbar-fixed-top">
+<?php if(isset($_SESSION['user_type']) && $_SESSION['user_type'] == '2') { ?>
+    
 	<div class="navbar-wrapper">
 		<div class="navbar-inverse" role="navigation">
 			<div class="container">
@@ -30,24 +30,27 @@
 			<!-- #Nav Ends -->
 			</div>
 		</div>
-		<div class="dropdown">
-			<button style="background-color: #000; font-color: white; float: right; margin-top: -54px; margin-right: 20px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"> <?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?> &nbsp;&nbsp; <span class="caret white"></span> </button>
-
-			<ul style="margin-top: -22px; margin-left: 1170px;" class="dropdown-menu">
-				<li class="dropdown-header">Account Settings</li>
-				<li><a style="text-transform: capitalize;" href="edit-profile.php">Manage Account</a></li>
-				<li class="divider"></li>
-				<li class="dropdown-header">Done browsing?</li>
-				<li><a style="text-transform: capitalize;" href="logout.php">Logout</a></li>
-			</ul>
-		</div>
 	</div>
-</nav> 
+    <?php if(isset($_SESSION['first_name'])) { ?> 
+            <!-- #Header Starts -->
+    <div class="container">
+        <div class="dropdown" style="z-index:11;">
+            <button style="background-color: #000; font-color: white; float: right; margin-right: -50px;margin-top:-43px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span style="color: white" class="glyphicon glyphicon-user "><?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?></span> <span class="caret white"></span></button>
+
+            <ul style="margin-top: -10px;margin-left: 1032px;" class="dropdown-menu">
+                <li class="dropdown-header">Account Settings</li>
+                <li><a href="edit-profile.php">Profile</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Done browsing?</li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <?php } ?>
 
 
-<?php } else if (isset($_SESSION['user_type']) == '3') { ?>
+<?php } else if (isset($_SESSION['user_type']) && $_SESSION['user_type'] == '3') { ?>
 
-<nav class="navbar navbar-default navbar-fixed-top" style="z-index:10;">
     <div class="navbar-wrapper">
 
         <div class="navbar-inverse" role="navigation">
@@ -74,26 +77,27 @@
                     </nav>
                 </div>
             </div>
-            <?php if(isset($_SESSION['first_name'])) { ?> 
-			<!-- #Header Starts -->
-			<div class="dropdown" style="z-index:11;">
-				<button style="background-color: #000; font-color: white; float: right; margin-right: -50px; margin-top: -170px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span style="color: white" class="glyphicon glyphicon-user "><?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?></span> <span class="caret white"></span></button>
-
-				<ul style=" margin-top: -140px; margin-left: 1032px;" class="dropdown-menu">
-					<li class="dropdown-header">Account Settings</li>
-					<li><a href="edit-profile.php">Profile</a></li>
-					<li class="divider"></li>
-					<li class="dropdown-header">Done browsing?</li>
-					<li><a href="logout.php">Logout</a></li>
-				</ul>
-			</div>
-			<?php } ?>
         </div>
     </div>
-</nav>
+    <?php if(isset($_SESSION['first_name'])) { ?> 
+            <!-- #Header Starts -->
+    <div class="container">
+        <div class="dropdown" style="z-index:11;">
+            <button style="background-color: #000; font-color: white; float: right; margin-right: -50px;margin-top:-43px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span style="color: white" class="glyphicon glyphicon-user "><?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?></span> <span class="caret white"></span></button>
+
+            <ul style="margin-top: -10px;margin-left: 1032px;" class="dropdown-menu">
+                <li class="dropdown-header">Account Settings</li>
+                <li><a href="edit-profile.php">Profile</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Done browsing?</li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <?php } ?>
 <?php } else { ?>
 
-<nav class="navbar navbar-default navbar-fixed-top" style="z-index:10;">
+
     <div class="navbar-wrapper">
 
         <div class="navbar-inverse" role="navigation">
@@ -122,6 +126,14 @@
             </div>
         </div>
     </div>
-</nav>
 
 <?php } ?>
+
+<!-- #Header Starts -->
+<div class="container">
+<!-- Header Starts -->
+    <div class="header">
+        <a href="index.php"><img style="margin-top: -30px;" src="images/logo2.png" alt="Housefinder"><img style="margin-top: 50px; margin-left: -210px; margin-bottom: -20px;" src="images/title.png"></a>
+    </div>
+<!-- #Header Starts -->
+</div>

@@ -1,8 +1,9 @@
-<?php include'headertop.php' ?>
-
-<?php
-/* Displays user information and some useful messages */
+<?php 
 session_start();
+include'headertop.php'; 
+
+/* Displays user information and some useful messages */
+
 
 // Check if user is logged in using the session variable
 if ( $_SESSION['logged_in'] != 1 ) {

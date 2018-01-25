@@ -1,3 +1,5 @@
+
+
 <?php 
 require 'db.php';
 ?>
@@ -10,12 +12,32 @@ if(!$_SESSION["email"])
     header('Location: login_page.php');
 }
 ?>
-
-
 <html>
-<head>
-       
-    <meta charset="UTF-8" />
+    <head>
+<!--    <link rel="stylesheet" href="jquery.dataTables.min.css" />-->
+<!--
+  <link rel="stylesheet" href="css/jquery-ui.css">   
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+-->
+
+    <script>
+//  $( function() {
+//    var availableTags = [
+//        "Cavite",
+//        "Bacoor, Cavite",
+//        "Manila City, Metro Manila",
+//        "Imus, Cavite",
+//        "Dasmariñas, Cavite",
+//        "General Trias, Cavite",
+//        "Tagaytay City, Cavite",
+//        "Kawit, Cavite"
+//    ];
+//    $( "#tags" ).autocomplete({
+//      source: availableTags
+//    });
+//  } );
+  </script>
+ <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
@@ -169,7 +191,6 @@ if(!$_SESSION["email"])
 <div class="header">
 <a href="index.php"><img style="margin-top: -30px;" src="images/logo2.png" alt="Housefinder"><img style="margin-top: 50px; margin-left: -210px; margin-bottom: -20px;" src="images/title.png"></a>
 
-
 </div>
 <!-- #Header Starts -->
 </div>
@@ -178,7 +199,7 @@ if(!$_SESSION["email"])
   <div class="dropdown">
 
     <button style="background-color: #000; font-color: white; float: right; margin-right: -50px; margin-top: -170px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-     <span style="color: white" class="glyphicon glyphicon-user "><?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?></span>
+     <span style="color: white" class="glyphicon glyphicon-user "></span>
         
         &nbsp;&nbsp;
         <span class="caret white"></span>
@@ -194,37 +215,42 @@ if(!$_SESSION["email"])
   </div>
 </div>
     
-    
- 
+    </head>
+
+<body>
+<!-- banner -->
+<div class="inside-banner">
+  <div class="container"> 
+    <h2>Buy, Sell & Rent</h2>
+</div>
+</div>
+<!-- banner -->
 
 
-<div class="banner-search">
-  <div class="container">
+<div class="container">
+<div class="properties-listing spacer">
 
-    <!-- banner -->
-    <h3>Search For Rent & For Sale Properties</h3>
-    <div class="searchbar">
-      <div class="row">
-        <div class="col-lg-6 col-sm-6">
-        <form action="search_results.php" method="get">
-            <div style="width: 440px;" class="ui-widget">
-          <input id="tags" name="query" type="text" class="form-control" placeholder="Location" required>
-            </div>
-          <button style="width: 100px; margin-top: -55px; margin-left: 450px;" type="submit" name="btn_find" class="btn btn-success">Find Now</button>
-          <div style="margin-top: -1px;" class="row">
-            <div class="col-lg-3 col-sm-3 ">
-              <select name="property_category" class="form-control">
+<div class="row">
+<div class="col-lg-3 col-sm-4 ">
+
+  <div class="search-form"><h4><span class="glyphicon glyphicon-search"></span>Search For</h4>
+            <form action="search_results.php" method="get">
+            <div class="ui-widget">
+          <input id="tags" type="search" name="query" class="form-control" placeholder="Location" required>
+                </div>
+        <div class="row">
+            <div class="col-lg-5">
+              <select name="property_type" class="form-control">
                 <option disabled selected>Type</option>
-                <option>House and Lot</option>
+                <option>House & Lot</option>
                 <option>Condominium</option>
                 <option>Apartment</option>
               </select>
             </div>
-            <div class="col-lg-3 col-sm-4">
+             <div class="col-lg-6 col-sm-7">
               <select name="min_price" class="form-control">
                 <option disabled selected>Min Price</option>
-                <option value="100000">₱ 100,000</option>
-                <option value="250000">₱ 250,000</option>
+         <option value="250000">₱ 250,000</option>
                 <option value="500000">₱ 500,000</option>
                 <option value="750000">₱ 750,000</option>
                 <option value="1000000">₱ 1,000,000</option>
@@ -235,7 +261,7 @@ if(!$_SESSION["email"])
                 <option value="1500000">₱ 1,500,000</option>
                 <option value="1600000">₱ 1,600,000</option>
                 <option value="1700000">₱ 1,700,000</option>
-                <option value="1800000">₱ 1,800,000</option>
+                <option value="180000">₱ 1,800,000</option>
                 <option value="1850000">₱ 1,850,000</option>
                 <option value="1900000">₱ 1,900,000</option>
                 <option value="1950000">₱ 1,950,000</option>
@@ -292,11 +318,10 @@ if(!$_SESSION["email"])
                 <option value="20000000">₱ 20,000,000</option>
               </select>
             </div>
-             <div class="col-lg-3 col-sm-4">
+             <div class="col-lg-7 col-sm-7">
               <select name="max_price" class="form-control">
                 <option disabled selected>Max Price</option>
-             <option value="100000">₱ 100,000</option>
-                <option value="250000">₱ 250,000</option>
+               <option value="250000">₱ 250,000</option>
                 <option value="500000">₱ 500,000</option>
                 <option value="750000">₱ 750,000</option>
                 <option value="1000000">₱ 1,000,000</option>
@@ -307,7 +332,7 @@ if(!$_SESSION["email"])
                 <option value="1500000">₱ 1,500,000</option>
                 <option value="1600000">₱ 1,600,000</option>
                 <option value="1700000">₱ 1,700,000</option>
-                <option value="1800000">₱ 1,800,000</option>
+                <option value="180000">₱ 1,800,000</option>
                 <option value="1850000">₱ 1,850,000</option>
                 <option value="1900000">₱ 1,900,000</option>
                 <option value="1950000">₱ 1,950,000</option>
@@ -364,111 +389,53 @@ if(!$_SESSION["email"])
                 <option value="20000000">₱ 20,000,000</option>
               </select>
             </div>
-<!--
-              <div class="col-lg-3 col-sm-4">
-              <button class="btn btn-success"  onclick="window.location.href='buysalerent.php'">Find Now</button>
-              </div>
--->
           </div>
-            </form>
-        </div>
-      </div>
-    </div>
+
+          <button type="submit" name="btn_find" class="btn btn-primary">Find Now</button>
+      </form>
   </div>
+
+        <?php 
+
+            $sql = "SELECT id, price, property_title, location, featured FROM properties LIMIT 5";
+            $result = $mysqli->query($sql); 
+        ?>      
+  <h4>New Properties</h4>  
+ <?php while($row = $result->fetch_assoc()){  ?>
+<div class="hot-properties hidden-xs">
+
+<div class="row">
+                <div class="col-lg-4 col-sm-5"><img src="<?php echo $row['featured']; ?>" class="img-responsive img-circle" alt="properties"></div>
+                <div class="col-lg-8 col-sm-7">
+                  <h5><a href="property-detail.php?id=<?php echo $row['id'] ?>"><?php echo $row['property_title']; ?></a></h5>
+                  <p class="price">Price: ₱<?php echo $row['price']; ?></p>
+                  <p class="price">Location: <?php echo $row['location']; ?></p> </div>
+              </div>
+
 </div>
-       <div class="">
+<?php } ?>
+
+</div>
+
+<div class="col-lg-9 col-sm-8">
     
+        <?php 
 
-          <div id="slider" class="sl-slider-wrapper">
-
-        <div class="sl-slider">
-        
-          <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-1"></div>
-                <h2><a href="#">Find Property For Sale or For Rent!</a></h2>
-              <blockquote>              
-              <p class="location">Are you a Real Estate Broker, Real Estate Agency or Real Estate Developer and want to place your listing here? Contact us <a href="contact.php">here.</a></p>
-              
-              </blockquote>
-            </div>
-          </div>
-          
-          <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-2"></div>
-              <h2><a href="#"></a></h2>
-              <blockquote>              
-              <p class="location"> </p>
-              
-              </blockquote>
-            </div>
-          </div>
-          
-          <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-3"></div>
-              <h2><a href="#"></a></h2>
-              <blockquote>              
-              <p class="location"></p>
-              
-              </blockquote>
-            </div>
-          </div>
-          
-          <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-4"></div>
-              <h2><a href="#"></a></h2>
-              <blockquote>              
-              <p class="location"></p>
-              
-              </blockquote>
-            </div>
-          </div>
-          
-          <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
-            <div class="sl-slide-inner">
-              <div class="bg-img bg-img-5"></div>
-              <h2><a href="#"></a></h2>
-              <blockquote>              
-              <p class="location"></p>
-              
-              </blockquote>
-            </div>
-          </div>
-        </div><!-- /sl-slider -->
-
-
-
-        <nav id="nav-dots" class="nav-dots">
-          <span class="nav-dot-current"></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </nav>
-      </div><!-- /slider-wrapper -->
-</div>
-
-        <?php
             $i=1;
-            $sql = "SELECT * FROM properties ORDER BY id desc LIMIT 7";
-            $result = $mysqli->query($sql);
-        ?>    
-    
-<!-- banner -->
-<div class="container">
-  <div class="properties-listing spacer"> <a href="buysalerent-logged-in.php" class="pull-right viewall">View All Listing</a>
-    <h2>Featured Properties</h2>
-    <div id="owl-example" class="owl-carousel">
+            $sql = "SELECT * FROM properties ORDER BY id desc";
+            $result = $mysqli->query($sql); 
+        ?>      
+
+      <div id="row" class="row">
 <?php while($row = $result->fetch_assoc()){  ?>
 <?php $i; ?>
-      <div class="properties">
-        <div class="image-holder"><img style= "height:170px; width: 200px" src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties"/>
+        <div class="col-lg-3 col-sm-3">
+        <div class="properties">
+            
+       <a href="property-detail.php?id=<?php echo $row['id'] ?>"> <div class="image-holder"><img style="height: 150px; width: 170px;" src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties">
         </div>
-
-        <h4><a href="property-detail.php?id=<?php echo $row['id'] ?>"><?php echo $row['property_title']; ?></a></h4>
+        <?php $row['id'] ?>
+        <h4><?php echo $row['property_title']; ?></h4></a>
         <p class="price">Price: ₱<?php echo $row['price']; ?>
         <br>
         <?php echo $row['property_category']; ?>
@@ -477,53 +444,35 @@ if(!$_SESSION["email"])
         <br>
         Uploaded by: <?php echo $row['first_name']; ?></p>
         <a class="btn btn-primary" href="property-detail.php?id=<?php echo $row['id'] ?>">View Details</a>
-      </div>
-
-<?php $i++; } ?>
-
-    </div>
-  </div>
-  <div class="spacer">
-    <div class="row">
-      <div class="col-lg-6 col-sm-9 recent-view">
-        <h3>About Us</h3>
-        <p style="text-align: justify;">HouseFinder is A Web-based House Information System. It is proposed by Rustine Louise Agbayani and Reuben Derick Llanes, 4th year students currently taking up Bachelor of Science in Information Technology from University of Perpetual Help - Molino. The focus of this research project is basically managing housing for low income, medium and high incomes households or what is commonly known as affordable housing. “Affordable” is a term used to describe individuals’ capability to pay for certain products or services because their income is enough to do so. Although the term “affordable housing” is often applied to rental housing; that is within the financial means of those in the lower income ranges of a geographical area, the concept is applicable to both middle and high-income individuals.<br><a href="about-logged-in.php">Learn More</a></p>
-      
-      </div>
-        <?php
-            $i=1;
-            $sql = "SELECT * FROM properties ORDER BY id asc LIMIT 3";
-            $result = $mysqli->query($sql);
-        ?>
-      <div class="col-lg-5 col-lg-offset-1 col-sm-3 recommended">
-        <h3>Recommended Properties</h3>
-        <div id="myCarousel" class="carousel slide">
-
-          <!-- Carousel items -->
-<?php while($row = $result->fetch_assoc()){  ?>
-<?php $i; ?>
-          <div class="carousel-inner">
-            <div class="item active">
-              <div class="row">
-                <div class="col-lg-4"><img style= "height:100px; width: 150px;" src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties"/></div>
-                <div class="col-lg-8">
-                  <h5><a href="property-detail.php?id=<?php echo $row['id'] ?>"><?php echo $row['property_title']; ?></a></h5>
-                  <p class="price">Price: ₱<?php echo $row['price']; ?></p>
-                  <a href="property-detail.php?id=<?php echo $row['id'] ?>" class="more">More Detail</a> </div>
-              </div><br>
-            </div>
-
-          </div>
-<?php $i++; } ?>
         </div>
+        </div>
+<?php $i++; } ?>
       </div>
-    </div>
-  </div>
+
+
+
+</div>
+</div>
+</div>
 </div>
     
+ <script>
+
+    </script>
     
     
-    
+<!--
+<script type="text/javascript" src="jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function(){
+    $('#myTable').DataTable({
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+    });
+    });
+</script>
+-->
+
+    </body>
 </html>
 
-<?php include 'footer.php'; ?>
+<?php include'footer.php';?>

@@ -1,9 +1,9 @@
 <?php 
-
+session_start();
 include 'headertop.php';
 require_once 'db.php'; 
 
-session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -99,29 +99,7 @@ session_start();
   </head>
 
 
-<?php if(isset($_SESSION['first_name'])) { ?> 
-<!-- #Header Starts -->
-      
-<div class="container">
-    <div class="dropdown" style="z-index:11;">
 
-    <button style="background-color: #000; font-color: white; float: right; margin-right: -50px; margin-top: -170px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-    <span style="color: white" class="glyphicon glyphicon-user "><?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?></span>
-
-    &nbsp;&nbsp;
-    <span class="caret white"></span>
-    </button>
-
-    <ul style=" margin-top: -140px; margin-left: 1032px;" class="dropdown-menu">
-    <li class="dropdown-header">Account Settings</li>
-    <li><a href="edit-profile.php">Profile</a></li>
-    <li class="divider"></li>
-    <li class="dropdown-header">Done browsing?</li>
-    <li><a href="logout.php">Logout</a></li>
-    </ul>
-    </div>
-</div>
-<?php } ?>
 
 <!-- banner -->
 <div class="inside-banner">
@@ -255,36 +233,37 @@ session_start();
 
   </div>
   <div class="col-lg-4">
-  <div class="col-lg-12  col-sm-6">
-<div class="property-info">
-<p class="price">₱<?php echo $row['price'] ?></p>
-  <p class="area"><span class="glyphicon glyphicon-map-marker"></span> <?php echo $row['location'] ?></p>
-        <?php } ?>
-  </div>
-
-        <?php 
-            $id=$_GET['id'];
-            $sql = "SELECT `first_name` FROM properties WHERE id = $id";
-            $result = $mysqli->query($sql); 
-        ?>  
-
-</div>
+      <div class="col-lg-12  col-sm-6">
+        <div class="property-info">
+          <p class="price">₱<?php echo $row['price'] ?></p>
+          <p class="area"><span class="glyphicon glyphicon-map-marker"></span> <?php echo $row['location'] ?></p>
+            <?php } ?>
+        </div>
+            <?php 
+                $id=$_GET['id'];
+                $sql = "SELECT * FROM properties WHERE id = $id";
+                $result = $mysqli->query($sql); 
+            ?>  
+    </div>
+<?php if(isset($_SESSION['first_name'])) { ?> 
 <div class="col-lg-12 col-sm-6 "> 
-<div class="enquiry">
-  <h6><span class="glyphicon glyphicon-envelope"></span> A message will be sent to the  <h6 style="margin-top: -7px; margin-left: 20px;">Broker/Agent on your behalf.</h6></h6>
-  <form action="agents_reservation.php" method="post" role="form">
-        <?php if($row = $result->fetch_assoc()){  ?>
-                <input type="text" name="full_name" class="form-control" placeholder="Full Name" required/>
-                <input type="text" name="email" class="form-control" placeholder="you@email.com" required/>
-                <input type="text" name="contact_number" class="form-control" placeholder="Your Number" required/>
-                <textarea rows="6" name="message" class="form-control" placeholder="Please contact me regarding to this house"></textarea>
-                <input type="hidden" name="agent_name" value="<?php echo $row['first_name']; ?>">
-      <button type="submit" class="btn btn-primary" name="Submit">Reserve this property</button>
-      <?php } ?>
-  </form>
- </div>         
+  <div class="enquiry">
+    <h6><span class="glyphicon glyphicon-envelope"></span> A message will be sent to the  <h6 style="margin-top: -7px; margin-left: 20px;">Broker/Agent on your behalf.</h6></h6>
+    <form action="reserve_property.php" method="post" role="form">
+    <?php if($row = $result->fetch_assoc()){  ?>
+    <input type="text" name="full_name" class="form-control" placeholder="Full Name" required/>
+    <input type="text" name="email" class="form-control" placeholder="you@email.com" required/>
+    <input type="text" name="contact_number" class="form-control" placeholder="Your Number" required/>
+    <textarea rows="6" name="message" class="form-control" placeholder="Please contact me regarding to this house" style="resize:none;"></textarea>
+    <input type="hidden" name="agentId" value="<?php echo $row['agent_id']; ?>">
+    <input type="hidden" name="propertyId" value="<?php echo $row['id']; ?>">
+    <button type="submit" class="btn btn-primary" name="Submit">Reserve this property</button>
+    <?php } ?>
+    </form>
+  </div>         
 </div>
-  </div>
+<?php } ?>
+</div>
 </div>
 </div>
 </div>

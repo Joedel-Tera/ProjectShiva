@@ -1,9 +1,8 @@
 <?php
-require_once 'db.php'; 
-?>
-
-<?php
 session_start();
+require_once 'db.php'; 
+include 'headertop.php';
+
 if(!$_SESSION["email"])
 {
     //Do not show protected data, redirect to login...
@@ -18,31 +17,7 @@ if(!$_SESSION["email"])
             <title>Agent Profile</title>
           <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    
-    
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/style.css"/>
-    <script src="assets/bootstrap/js/jquery-1.9.1.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.js"></script>
-    <script src="assets/script.js"></script>
-   
-    
-    <!-- Owl stylesheet -->
-    <link rel="stylesheet" href="assets/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="assets/owl-carousel/owl.theme.css">
-    <script src="assets/owl-carousel/owl.carousel.js"></script>
-    <!-- Owl stylesheet -->
 
-
-    <!-- slitslider -->
-    <link rel="stylesheet" type="text/css" href="assets/slitslider/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="assets/slitslider/css/custom.css" />
-    
-    <script type="text/javascript" src="assets/slitslider/js/modernizr.custom.79639.js"></script>
-    <script type="text/javascript" src="assets/slitslider/js/jquery.ba-cond.min.js"></script>
-    <script type="text/javascript" src="assets/slitslider/js/jquery.slitslider.js"></script>
-    <!-- slitslider -->
      
     
                 <style>
@@ -143,76 +118,7 @@ if(!$_SESSION["email"])
 
     </head>
     
-    <!-- Header Starts -->
-    <nav class="navbar navbar-fixed-top">
-<div class="navbar-wrapper">
 
-        <div class="navbar-inverse" role="navigation">
-          <div class="container">
-            <div style="height: 50px;" class="navbar-header">
-
-
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-            </div>
-
-
-            <!-- Nav Starts -->
-            
-            <div style="margin-right: 50px;" class="navbar-collapse  collapse">
-                <nav class="shift">
-              <ul class="nav navbar-nav navbar-left">
-               <li class="active"><a href="agent-index.php">Home</a></li>
-                <li class="active"><a href="agent-about.php">About</a></li>
-                <li class="active"><a href="agent-agents.php">Agents</a></li>
-                <li class="active"><a href="agent-blog.php">Blog</a></li>
-                <li class="active"><a href="agent-contact.php">Contact</a></li>      
-              </ul>
-                </nav>
-            </div>
-            <!-- #Nav Ends -->
-
-          </div>
-        </div>
-  <div class="dropdown">
-
-    <button style="background-color: #000; font-color: white; float: right; margin-top: -54px; margin-right: 20px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-     <?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?>
-        
-        &nbsp;&nbsp;
-        <span class="caret white"></span>
-      </button>
-    <ul style="margin-top: -22px; margin-left: 1170px;" class="dropdown-menu">
-      <li class="dropdown-header">Account Settings</li>
-      <li><a style="text-transform: capitalize;" href="edit-profile.php">Manage Account</a></li>
-      <li class="divider"></li>
-      <li class="dropdown-header">Done browsing?</li>
-      <li><a style="text-transform: capitalize;" href="logout.php">Logout</a></li>
-    </ul>
-  </div>
-    </div>
-        
-        
-     </nav> 
-    <br>
-    <br>
-    
-<!-- #Header Starts -->
-
-<div class="container">
-
-<!-- Header Starts -->
-<div class="header">
-<a href="agent-index.php"><img style="margin-top: -30px;" src="images/logo2.png" alt="Housefinder"><img style="margin-top: 50px; margin-left: -210px; margin-bottom: -20px;" src="images/title.png"></a>
-
-</div>
-<!-- #Header Starts -->
-</div>
 
         <div class="inside-banner">
             <div class="container"> 
@@ -267,26 +173,33 @@ if(!$_SESSION["email"])
                   
                   
         <?php 
-            $sql = "SELECT property_type, property_category, location, negotiable, property_title FROM properties WHERE first_name = '".$_SESSION["first_name"]."'";
+            $sql = "SELECT * FROM property_reservations as pr INNER JOIN properties as prop ON property_id = prop.id INNER JOIN agents as agent ON pr.agent_id = agent.id WHERE pr.agent_id = '".$_SESSION['id']."'";
             $result = $mysqli->query($sql); 
+
         ?>      
                   
                 
                     <table id="listings" class="table table-striped" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th>User</th>
-                                <th>Request</th>
-                                <th>Actions</th>
+                                <th>Customer Name</th>
+                                <th>Customer Email</th>
+                                <th>Customer No.</th>
+                                <th>Property Category</th>
+                                <th>Property Type</th>
+                                <th> Action </th>
                             </tr>
                         </thead>
                         
                         <tbody>
                            <?php while($row = $result->fetch_assoc()){  ?>
                             <tr>
-                                <td><?php echo $row['property_type']; ?></td>
+                                <td><?php echo $row['customer_name']; ?></td>
+                                <td><?php echo $row['customer_email']; ?></td>
+                                <td><?php echo $row['customer_number']; ?></td>
                                 <td><?php echo $row['property_category']; ?></td>
-                                <td></td>
+                                <td><?php echo $row['property_type']; ?></td>
+                                <td> </td>
                             </tr>
                            <?php } ?>
                         </tbody>
@@ -298,11 +211,11 @@ if(!$_SESSION["email"])
                  
         <script type="text/javascript" src="jquery.dataTables.min.js"></script>
         <script>
-            $(document).ready(function(){
+/*            $(document).ready(function(){
             $('#listings').DataTable({
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             });
-            });
+            });*/
         </script>
     </div>
 </div>

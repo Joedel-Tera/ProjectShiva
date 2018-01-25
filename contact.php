@@ -1,11 +1,9 @@
 <?php 
+session_start();
 require_once'db.php';
 include'headertop.php';
-session_start();
-if(isset($_SESSION["email"]))
-{
-    header('Location: contact-logged-in.php');
-}
+
+
 ?>
 
 <!DOCTYPE html>

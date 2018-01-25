@@ -1,9 +1,8 @@
 <?php
-require_once 'db.php'; 
-?>
-
-<?php
 session_start();
+require_once 'db.php'; 
+include 'headertop.php';
+
 if(!$_SESSION["email"])
 {
     //Do not show protected data, redirect to login...
@@ -20,29 +19,6 @@ if(!$_SESSION["email"])
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
     
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/style.css"/>
-    <script src="assets/bootstrap/js/jquery-1.9.1.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.js"></script>
-    <script src="assets/script.js"></script>
-   
-    
-    <!-- Owl stylesheet -->
-    <link rel="stylesheet" href="assets/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="assets/owl-carousel/owl.theme.css">
-    <script src="assets/owl-carousel/owl.carousel.js"></script>
-    <!-- Owl stylesheet -->
-
-
-    <!-- slitslider -->
-    <link rel="stylesheet" type="text/css" href="assets/slitslider/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="assets/slitslider/css/custom.css" />
-    
-    <script type="text/javascript" src="assets/slitslider/js/modernizr.custom.79639.js"></script>
-    <script type="text/javascript" src="assets/slitslider/js/jquery.ba-cond.min.js"></script>
-    <script type="text/javascript" src="assets/slitslider/js/jquery.slitslider.js"></script>
-    <!-- slitslider -->
      
     
                 <style>
@@ -143,72 +119,7 @@ if(!$_SESSION["email"])
 
     </head>
     
-    <!-- Header Starts -->
-    <nav class="navbar navbar-fixed-top">
-<div class="navbar-wrapper">
 
-        <div class="navbar-inverse" role="navigation">
-          <div class="container">
-            <div style="height: 50px;" class="navbar-header">
-
-
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-            </div>
-
-
-            <!-- Nav Starts -->
-            
-            <div style="margin-right: 50px;" class="navbar-collapse  collapse">
-                <nav class="shift">
-              <ul class="nav navbar-nav navbar-left">
-               <li class="active"><a href="index.php">Home</a></li>
-                <li class="active"><a href="about.php">About</a></li>
-                <li class="active"><a href="agents.php">Agents</a></li>
-                <li class="active"><a href="buysalerent.php">Browse</a></li>
-                <li class="active"><a href="contact.php">Contact</a></li>  
-              </ul>
-                </nav>
-            </div>
-            <!-- #Nav Ends -->
-
-          </div>
-        </div>
-  <div class="dropdown">
-
-    <button style="background-color: #000; font-color: white; float: right; margin-top: -54px; margin-right: 20px;" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-     <span style="color: white" class="glyphicon glyphicon-user "><?php echo "<span style='color: #FFF;'> ".$_SESSION["first_name"]." </span>" ?></span>
-        
-        &nbsp;&nbsp;
-        <span class="caret white"></span>
-      </button>
-    <ul style="margin-top: -22px; margin-left: 1170px;" class="dropdown-menu">
-      <li class="dropdown-header">Account Settings</li>
-      <li><a style="text-transform: capitalize;" href="edit-profile.php">Manage Account</a></li>
-      <li class="divider"></li>
-      <li class="dropdown-header">Done browsing?</li>
-      <li><a style="text-transform: capitalize;" href="logout.php">Logout</a></li>
-    </ul>
-  </div>
-    </div>
-        
-        
-     </nav> 
-    <br>
-    <br>
-    
-<!-- #Header Starts -->
-
-<div class="container">
-
-<!-- Header Starts -->
-<div class="header">
-<a href="agent-index.php"><img style="margin-top: -30px;" src="images/logo2.png" alt="Housefinder"><img style="margin-top: 50px; margin-left: -210px; margin-bottom: -20px;" src="images/title.png"></a>
 
 </div>
 <!-- #Header Starts -->
@@ -269,7 +180,7 @@ if(!$_SESSION["email"])
                   
         <?php 
 
-            $sql = "SELECT property_type, property_category, location, negotiable, property_title FROM properties WHERE first_name = '".$_SESSION["first_name"]."'";
+            $sql = "SELECT * FROM properties WHERE agent_id = '".$_SESSION["id"]."'";
             $result = $mysqli->query($sql); 
         ?>      
                   
@@ -298,19 +209,32 @@ if(!$_SESSION["email"])
                                 <td>
                                     <?php
                                     // PAKIAYOS TO AFTER NG SHOW HIDE REMOVE A HREFSSSS
-                                        $yehey = 1;
-                                        if ($yehey == 1) {
-                                            echo "<i>HIDDEN</i>";
-                                        } else {
-                                            echo "<i>DISPLAYED</i>";
+                                        
+                                        if ($row['status'] == 0) {
+                                            echo "Listed";
+                                        } else if ($row['status'] == 1) {
+                                            echo "<i> Hide </i>";
+                                        } else if ($row['status'] == 2) {
+                                            echo "<i> Removed </i>";
+                                        } else if ($row['status'] == 3) {
+                                            echo "<i> Reserved </i>";
+                                        } else if ($row['status'] == 4) {
+                                            echo "<i> Sold </i>";
                                         }
                                     ?>
                                 </td>
                                 <td>
-                                    <a style="font-size: 14px;" href=""><u>Show</u></a> &nbsp
-                                    <a style="font-size: 14px;" href="#"><u>Hide</u></a> &nbsp
-                                    <a style="font-size: 14px; color: #FA5252;" href="#"><u>Remove</u></a>
-                                </td>
+                                    <?php if ($row['status'] == 0) { ?>
+                                    <a class="hideAction" style="font-size: 14px;" href="#"><u>Hide</u></a> &nbsp
+                                    <a class="removeAction" style="font-size: 14px; color: #FA5252;" href="#"><u>Remove</u></a>   
+                                    <?php } else if ($row['status'] == 1) { ?>
+                                    <a class="showAction" style="font-size: 14px;" href=""><u>Show</u></a> &nbsp
+                                    <a class="removeAction" style="font-size: 14px; color: #FA5252;" href="#"><u>Remove </u></a>                                              
+                                    <?php } else if ($row['status'] == 3) { ?>
+                                    <a class="soldAction" style="font-size: 14px;" href=""><u>Sold</u></a> &nbsp
+                                    <a class="relistAction" style="font-size: 14px;" href="#"><u>Re-List</u></a>
+                                    <?php } ?>
+                               </td>
                             </tr>
                            <?php } ?>
                         </tbody>
