@@ -66,17 +66,21 @@ unset($_SESSION['alert']);
 							<?php if($row['status'] == 0) { ?>
 							<a class="btn btn-primary" href="property-detail.php?id=<?php echo $row['id'] ?>">View Details</a>
 							<?php } else if ($row['status'] == 3) { ?>
-								<?php 
-									$reservedBy = "SELECT * FROM property_reservations WHERE property_id = ".$row['id'];
-									$getRes = $mysqli->query($reservedBy);
-									$myRow = mysqli_fetch_assoc($getRes);
-									if($myRow['user_id'] == $_SESSION['id']){
-								?>
-									<?php if($myRow['reservation_status'] == 'APPROVED') { ?> 
-									<button class="btn btn-default" disabled> Reserved By Me </button> 
-									<?php } else if ($myRow['reservation_status'] == '') { ?>
-									<input type="hidden" class="propertyId" value="<?php echo $row['id']; ?>">
-									<button class="btn btn-primary payFee"> Pay Reservation Fee </button>
+								<?php if(isset($_SESSION['id'])) { ?>
+									<?php 
+										$reservedBy = "SELECT * FROM property_reservations WHERE property_id = ".$row['id'];
+										$getRes = $mysqli->query($reservedBy);
+										$myRow = mysqli_fetch_assoc($getRes);
+										if($myRow['user_id'] == $_SESSION['id']){
+									?>
+										<?php if($myRow['reservation_status'] == 'APPROVED') { ?> 
+										<button class="btn btn-default" disabled> Reserved By Me </button> 
+										<?php } else if ($myRow['reservation_status'] == '') { ?>
+										<input type="hidden" class="propertyId" value="<?php echo $row['id']; ?>">
+										<button class="btn btn-primary payFee"> Pay Reservation Fee </button>
+										<?php } ?>
+									<?php } else { ?>
+										<button class="btn btn-default" disabled> Already Reserved </button>
 									<?php } ?>
 								<?php } else { ?>
 									<button class="btn btn-default" disabled> Already Reserved </button>

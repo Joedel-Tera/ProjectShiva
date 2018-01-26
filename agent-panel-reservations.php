@@ -265,7 +265,7 @@ if(!$_SESSION["email"])
                             url: 'ajaxFunctions.php',
                             data: {
                                 'soldStatus' : propId,
-                                'reservationId' : reservationId
+                                'resId' : reservationId
                             },
                             dataType: 'json',
                             success: function(data){
@@ -294,7 +294,7 @@ if(!$_SESSION["email"])
                             url: 'ajaxFunctions.php',
                             data: {
                                 'declined' : propId,
-                                'reservationId' : reservationId
+                                'resId' : reservationId
                             },
                             dataType: 'json',
                             success: function(data){

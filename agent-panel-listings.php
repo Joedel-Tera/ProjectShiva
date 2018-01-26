@@ -249,31 +249,6 @@ if(!$_SESSION["email"])
                 $('#listings').DataTable({
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 });
-                $('.soldAction').each(function(){
-                    var _this = $(this);
-                    var propId = $('#propId').val();
-                   _this.on('click',function(){
-                        $.ajax({
-                            type: 'POST',
-                            url: 'ajaxFunctions.php',
-                            data: {
-                                'soldStatus' : propId
-                            },
-                            dataType: 'json',
-                            success: function(data){
-
-                               if(data.result){
-                                alert("Status Updated Wait for the page to reload.");
-                                    setTimeout(function(){// wait for 5 secs(2)
-                                        location.reload(); // then reload the page.(3)
-                                    }, 3000);
-                               } else {
-                                 alert("Error Occurred Please Try again later.");
-                               }
-                            }
-                        });
-                   });
-                });
                 $('.hideAction').each(function(){
                     var _this = $(this);
                     var propId = $('#propId').val();
