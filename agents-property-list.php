@@ -15,9 +15,14 @@ if(isset($_GET['id'])){
 }
 
 if(isset($_SESSION['alert'])){
-	echo "<script type='text/javascript'>alert('Payment Information Submitted!')</script>";
+  echo "<script type='text/javascript'>alert('Payment Information Submitted!')</script>";
 }
+if(isset($_SESSION['error'])){
+  echo "<script type='text/javascript'>alert('Oops! Something went wrong')</script>";
+}
+
 unset($_SESSION['alert']);
+unset($_SESSION['error']);
 ?>
 
 
@@ -78,6 +83,7 @@ unset($_SESSION['alert']);
 										<?php } else if ($myRow['reservation_status'] == 'PENDING CONFIRMATION') { ?>
 										<button class="btn"> Confirming Reservation Fee </button>
 										<?php } else if ($myRow['reservation_status'] == '') { ?>
+										<input type="hidden" class="resId" value="<?php echo $myRow['reservation_id']; ?>">
 										<input type="hidden" class="propertyId" value="<?php echo $row['id']; ?>">
 										<button class="btn btn-primary payFee"> Pay Reservation Fee </button>
 										<?php } ?>
@@ -139,6 +145,7 @@ unset($_SESSION['alert']);
 				                </div>
 				                <div class="form-group">
 				                	<div class="col-sm-6 col-sm-offset-3">
+				                		<input type="hidden" name="resId" id="resId">
 				                		<input type="hidden" name="agentId" value="<?php echo $agentData['id']; ?>">
 				                		<input type="hidden" id="propertyId" name="propertyId" value="<?php echo $row['id']; ?>">
 				                		<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
@@ -158,6 +165,9 @@ unset($_SESSION['alert']);
 		var _this = $(this);
 		_this.on('click', function(){
 			var propId = _this.parent().find('.propertyId').val();
+			var resId = _this.parent().find('.resId').val();
+
+			$('#resId').val(resId);
 			$('#propertyId').val(propId);
 			$('#showPaymentForm').modal('show');
 		});

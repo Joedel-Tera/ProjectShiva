@@ -4,7 +4,7 @@ include_once 'headertop.php';
 require 'db.php';
 
 // Escape all $_POST variables to protect against SQL injections
-
+$resId = $_POST['resId'];
 $agentId = $_POST['agentId'];
 $propId = $_POST['propertyId'];
 $userId = $_POST['userId'];
@@ -16,20 +16,24 @@ if (isset($_POST['paymentDetails'])){
     
     $sql = "INSERT INTO reservation_payments (agent_id, property_id, user_id, amount, reference_number) " 
             . "VALUES ('$agentId', '$propId', '$userId', '$amount', '$refNumber')";
+
     if ( $mysqli->query($sql) ){
-        
-        $_SESSION['alert'] = 'Success';
-        header('location: agents-property-list.php?id='.$agentId);
+        $sql2 = "UPDATE property_reservations SET reservation_status = 'PENDING CONFIRMATION' WHERE reservation_id = $resId";
+
+        if($mysqli->query($sql2)){
+             $_SESSION['alert'] = 'Success';
+            header('location: agents-property-list.php?id='.$agentId);
+        }
     }
     else {
-        echo "<script type='text/javascript'>alert('Oops! Something went wrong')</script>";
-
+         $_SESSION['error'] = 'Error';
+         header('location: agents-property-list.php?id='.$agentId);
     }
-    	header('location: agents-property-list.php?id='.$agentId);
+    header('location: agents-property-list.php?id='.$agentId);
 } 
 
 if (isset($_POST['reservationSubmit'])){
-    $resId = $_POST['resId'];
+    
     
     $sql = "INSERT INTO reservation_payments (agent_id, property_id, user_id, amount, reference_number) " 
             . "VALUES ('$agentId', '$propId', '$userId', '$amount', '$refNumber')";
