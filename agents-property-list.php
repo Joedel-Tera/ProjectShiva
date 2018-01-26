@@ -74,7 +74,9 @@ unset($_SESSION['alert']);
 										if($myRow['user_id'] == $_SESSION['id']){
 									?>
 										<?php if($myRow['reservation_status'] == 'APPROVED') { ?> 
-										<button class="btn btn-default" disabled> Reserved By Me </button> 
+										<button class="btn btn-default" disabled> Reserved By Me </button>
+										<?php } else if ($myRow['reservation_status'] == 'PENDING CONFIRMATION') { ?>
+										<button class="btn"> Confirming Reservation Fee </button>
 										<?php } else if ($myRow['reservation_status'] == '') { ?>
 										<input type="hidden" class="propertyId" value="<?php echo $row['id']; ?>">
 										<button class="btn btn-primary payFee"> Pay Reservation Fee </button>

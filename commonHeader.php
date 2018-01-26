@@ -72,7 +72,8 @@
                             <li class="active"><a href="about.php">About</a></li>
                             <li class="active"><a href="agents.php">Agents</a></li>
                             <li class="active"><a href="buysalerent.php">Browse</a></li>
-                            <li class="active"><a href="contact.php">Contact</a></li>          
+                            <li class="active"><a href="myReservations.php"> Reservations </a></li>
+                            <li class="active"><a href="contact.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
