@@ -200,6 +200,11 @@ if(!$_SESSION["email"])
                                     <button class="approvedAction btn" style="font-size: 14px;" href="">Approved </button>
                                     <button class="soldAction btn" style="font-size: 14px;" href="">Sold </button>
                                     <button class="declineAction btn" style="font-size: 14px;" href="">Decline </button>
+                                    <?php } else if ($row['reservation_status'] == 'PENDING CONFIRMATION') { ?>
+                                    <input type="hidden" class="propId" value="<?php echo $row['property_id']; ?>">
+                                    <input type="hidden" class="reservationId" value="<?php echo $row['reservation_id']; ?>">
+                                    <button class="approvedAction btn" style="font-size: 14px;" href="">Approved </button>
+                                    <button class="declineAction btn" style="font-size: 14px;" href="">Decline </button>
                                     <?php } else if ($row['reservation_status'] == 'APPROVED') { ?>
                                     <input type="hidden" class="propId" value="<?php echo $row['property_id']; ?>">
                                     <input type="hidden" class="reservationId" value="<?php echo $row['reservation_id']; ?>">
