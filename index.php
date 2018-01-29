@@ -336,7 +336,7 @@ include'headertop.php';
 
         <?php
             $i=1;
-            $sql = "SELECT * FROM properties WHERE status = 0 ORDER BY id asc LIMIT 3";
+            $sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 3";
             $result = $mysqli->query($sql);
         ?>
       <div class="col-lg-5 col-lg-offset-1 col-sm-3 recommended">

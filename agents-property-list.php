@@ -69,7 +69,7 @@ unset($_SESSION['error']);
 							<br>
 							Date Submitted: <?php echo $row['date_created']; ?></p>
 							<?php if($row['status'] == 0) { ?>
-							<a class="btn btn-primary" href="property-detail.php?id=<?php echo $row['id'] ?>">View Details</a>
+							<a class="btn btn-primary addToRecentClicked" data-id="<?php echo $row['id']; ?>" href="#"> View Details </a>
 							<?php } else if ($row['status'] == 3) { ?>
 								<?php if(isset($_SESSION['id'])) { ?>
 									<?php 
@@ -160,7 +160,7 @@ unset($_SESSION['error']);
 		</div>
 	</div>
 </div>
-<script>
+<script type="text/javascript">
 	$('.payFee').each(function(){
 		var _this = $(this);
 		_this.on('click', function(){
@@ -172,7 +172,30 @@ unset($_SESSION['error']);
 			$('#showPaymentForm').modal('show');
 		});
 	});
-</script>	
+	$('.addToRecentClicked').each(function(){
+			var _this = $(this);
+			_this.on('click', function(){
+				var propId = _this.attr('data-id');
+				$.ajax({
+	                type: 'POST',
+	                url: 'ajaxFunctions.php',
+	                data: {
+	                    'clickedProp' : propId
+	                },
+	                dataType: 'json',
+	                success: function(data){
+	                   if(data.result){
+	                        setTimeout(function(){// wait for 5 secs(2)
+	                            location.href = 'property-detail.php?id='+propId; // then reload the page.(3)
+	                        }, 500);
+	                   } else {
+	                     alert("Error Occurred Please Try again later.");
+	                   }
+	                }
+	            });
+			});
+		});		
+	</script>	
 </body>
 
 <?php include'footer.php';?>

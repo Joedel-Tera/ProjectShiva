@@ -2,6 +2,13 @@
 session_start();
 include_once 'headertop.php';
 require 'db.php';
+include "smsGateway.php";
+
+$SMS_EMAIL = 'Strafer14@yahoo.com';
+$SMS_PASSWORD = 'Tsumichan';
+$SMS_DEVICE_ID = 76821;
+
+$smsGateway = new SmsGateway($SMS_EMAIL, $SMS_PASSWORD); 
 
 // Escape all $_POST variables to protect against SQL injections
 $resId = $_POST['resId'];
@@ -10,6 +17,11 @@ $propId = $_POST['propertyId'];
 $userId = $_POST['userId'];
 $amount = $_POST['amount'];
 $refNumber = $_POST['paymentReference'];
+
+$getUserNumber = "SELECT * FROM property_reservations WHERE user_id = $userId";
+$res = $mysqli->query($getUserNumber);
+$userData = $res->fetch_assoc();
+$customerNumber = $userData['customer_number'];
 
 if (isset($_POST['paymentDetails'])){
 
@@ -21,6 +33,13 @@ if (isset($_POST['paymentDetails'])){
         $sql2 = "UPDATE property_reservations SET reservation_status = 'PENDING CONFIRMATION' WHERE reservation_id = $resId";
 
         if($mysqli->query($sql2)){
+            $number = $customerNumber;
+            $message = "Thank you for submiting your reference number. the agent associated with the property will verify your reservation fee.";
+            $message2 = "Housefinder Notifications."
+            $mainMessage = $message.' '.$message2;
+            $deviceID = $SMS_DEVICE_ID;
+
+            $smsGateway->sendMessageToNumber($number, $mainMessage, $deviceID);
              $_SESSION['alert'] = 'Success';
             header('location: agents-property-list.php?id='.$agentId);
         }
@@ -41,6 +60,13 @@ if (isset($_POST['reservationSubmit'])){
         $sql2 = "UPDATE property_reservations SET reservation_status = 'PENDING CONFIRMATION' WHERE reservation_id = $resId";
 
         if($mysqli->query($sql2)){
+            $number = $customerNumber;
+            $message = "Thank you for submiting your reference number. the agent associated with the property will verify your reservation fee.";
+            $message2 = "Housefinder Notifications."
+            $mainMessage = $message.' '.$message2;
+            $deviceID = $SMS_DEVICE_ID;
+
+            $smsGateway->sendMessageToNumber($number, $mainMessage, $deviceID);
              $_SESSION['alert'] = 'Success';
             header('location: myReservations.php');
         }

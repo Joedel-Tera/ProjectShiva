@@ -214,10 +214,10 @@ require_once('db.php');
 	  </form>
   </div>
 		<?php 
-			$sql = "SELECT id, price, property_title, location, featured FROM properties LIMIT 5";
+			$sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 5";
 			$result = $mysqli->query($sql); 
 		?>      
-  <h4>New Properties</h4>  
+  <h4>Recently Viewed Properties</h4>  
  <?php while($row = $result->fetch_assoc()){  ?>
 <div class="hot-properties hidden-xs">
 
@@ -344,7 +344,7 @@ require_once('db.php');
 			Uploaded by: <?php echo $row['first_name']; ?>
 			<br>
 			Date Posted: <?php echo $row['date_created']; ?></p>
-			<a class="btn btn-primary" href="property-detail.php?id=<?php echo $row['id'] ?>">View Details</a>
+			<a class="btn btn-primary addToRecentClicked" data-id="<?php echo $row['id']; ?>" href="#"> View Details </a>
 		</div>
 	</div>
 	  
@@ -365,7 +365,31 @@ require_once('db.php');
 		</div>
 	</div>
 </div>
-	
+	<script type="text/javascript">
+		$('.addToRecentClicked').each(function(){
+			var _this = $(this);
+			_this.on('click', function(){
+				var propId = _this.attr('data-id');
+				$.ajax({
+	                type: 'POST',
+	                url: 'ajaxFunctions.php',
+	                data: {
+	                    'clickedProp' : propId
+	                },
+	                dataType: 'json',
+	                success: function(data){
+	                   if(data.result){
+	                        setTimeout(function(){// wait for 5 secs(2)
+	                            location.href = 'property-detail.php?id='+propId; // then reload the page.(3)
+	                        }, 500);
+	                   } else {
+	                     alert("Error Occurred Please Try again later.");
+	                   }
+	                }
+	            });
+			});
+		});
+	</script>
 	
 	</body>
 </html>

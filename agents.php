@@ -100,8 +100,8 @@ include'headertop.php';
   <div class="col-lg-8  col-lg-offset-2 col-sm-12">
       <!-- agents -->
       <div class="row">
-        <div class="col-lg-2 col-sm-2 "><img alt="User Pic" src="<?php echo $row['avatar']; ?>" id="profile-image1" class="img-circle img-responsive"></div>
-        <div class="col-lg-7 col-sm-7 "><h4><?php echo "".$row['first_name']."" ?>&nbsp<?php echo "".$row['last_name']."" ?></h4>
+        <div class="col-lg-3 col-sm-2 "><img alt="User Pic" src="<?php echo $row['avatar']; ?>" id="profile-image1" class="img-circle img-responsive"></div>
+        <div class="col-lg-5 col-sm-7 "><h4><?php echo "".$row['first_name']."" ?>&nbsp<?php echo "".$row['last_name']."" ?></h4>
             <br>
             
             <p>     Address:   
@@ -143,7 +143,7 @@ include'headertop.php';
 
                 
         </div>
-        <div class="col-lg-3 col-sm-3 ">
+        <div class="col-lg-4 col-sm-3 ">
             <span class="glyphicon glyphicon-envelope"></span> 
             <a href="mailto:<?php $row['email_info']; ?>">
                 <?php

@@ -2,6 +2,7 @@
 session_start();
 require 'db.php';
 include 'headertop.php';
+$date = date('m-d-Y');
 
 if(isset($_SESSION['alert'])){
 	echo "<script type='text/javascript'>alert('Successfully Reserved!')</script>";
@@ -221,10 +222,10 @@ unset($_SESSION['alert']);
 </div>
 
 		<?php 
-			$sql = "SELECT id, price, property_title, location, featured FROM properties WHERE status = 0 LIMIT 5";
+			$sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 5;";
 			$result = $mysqli->query($sql); 
 		?>      
-  <h4>New Properties</h4>  
+  <h4> Recently Viewed Properties</h4>  
  <?php while($row = $result->fetch_assoc()){  ?>
 <div class="hot-properties hidden-xs">
 
@@ -254,7 +255,7 @@ unset($_SESSION['alert']);
 <?php $i; ?>
 		<div class="col-lg-3 col-sm-3">
 		<div class="properties">
-			
+		<h4 style="color:red;"><?php echo $row['property_type']; ?> </h4>
 	   <a href="property-detail.php?id=<?php echo $row['id'] ?>"> <div class="image-holder"><img style="height: 150px; width: 170px;" src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties">
 		</div>
 		<?php $row['id'] ?>
@@ -268,7 +269,7 @@ unset($_SESSION['alert']);
 		Uploaded by: <?php echo $row['first_name']; ?>
 		<br>
 		Date Posted: <?php echo $row['date_created']; ?></p>
-		<a class="btn btn-primary" href="property-detail.php?id=<?php echo $row['id'] ?>">View Details</a>
+		<a class="btn btn-primary addToRecentClicked" data-id="<?php echo $row['id']; ?>" href="#">View Details</a>
 		</div>
 		</div>
 <?php $i++; } ?>
@@ -280,22 +281,33 @@ unset($_SESSION['alert']);
 </div>
 </div>
 </div>
-	
- <script>
 
-	</script>
-	
-	
-<!--
-<script type="text/javascript" src="jquery.dataTables.min.js"></script>
-<script>
-	$(document).ready(function(){
-	$('#myTable').DataTable({
-		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+<script type="text/javascript">
+	$('.addToRecentClicked').each(function(){
+		var _this = $(this);
+		_this.on('click', function(){
+			var propId = _this.attr('data-id');
+			$.ajax({
+                type: 'POST',
+                url: 'ajaxFunctions.php',
+                data: {
+                    'clickedProp' : propId
+                },
+                dataType: 'json',
+                success: function(data){
+                   if(data.result){
+                        setTimeout(function(){// wait for 5 secs(2)
+                            location.href = 'property-detail.php?id='+propId; // then reload the page.(3)
+                        }, 500);
+                   } else {
+                     alert("Error Occurred Please Try again later.");
+                   }
+                }
+            });
+		});
 	});
-	});
+
 </script>
--->
 
 	</body>
 </html>

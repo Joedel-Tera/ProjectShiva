@@ -81,11 +81,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <h1>Welcome!</h1>
           <form id="form" role="form" data-toggle="validator" action="login_page.php" method="post" autocomplete="off">
           
-            <div class="field-wrap">
+          <div class="field-wrap">
+            <label>
+              Select User
+            </label>
+            <select class="form-control" name="userType">
+                <option value="2"> Agent / Brooker </option>
+                <option value="3"> User </option>
+            </select>
+          </div>
+
+
+          <div class="field-wrap">
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required autocomplete="on" name="email"/>
+            <input type="email" required autocomplete="on" name="email"/>
           </div>
           
           <div class="field-wrap">
@@ -95,7 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required autocomplete="off" name="password"/>
               <span class="help-block"></span>
           </div>
-          <p class="forgot"><a href="agent_login_page.php">Are you an Agent/Broker? Click here!</a></p>
+          <p class="forgot"><!-- <a href="agent_login_page.php">Are you an Agent/Broker? Click here!</a> --></p>
+          
           <p class="forgot"><a href="forgot.php">Forgot Password?</a></p>
           
           <button class="button button-block" name="login">Log In</button>

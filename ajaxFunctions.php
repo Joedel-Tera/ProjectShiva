@@ -75,5 +75,18 @@ if(isset($_POST['reservationId'])){
 	echo $response;
 }
 
+if(isset($_POST['clickedProp'])){
+	$date = date('m-d-Y');
+	$id = $_POST['clickedProp'];
+	$sql = "INSERT INTO recent_search (property_id,date_clicked) VALUES ($id, '$date')";
+	$result = $mysqli->query($sql);
+
+	if($result){
+		$response = json_encode(array('result'=>true));
+	}
+
+	echo $response;
+}
+
 
 ?>

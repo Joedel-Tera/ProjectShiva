@@ -122,7 +122,7 @@ require_once 'db.php';
 
         <?php 
             $i=1;
-            $sql = "SELECT * FROM properties ORDER BY id desc LIMIT 4";
+            $sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 5";
             $result = $mysqli->query($sql); 
         ?>  
 <div class="hot-properties hidden-xs">
