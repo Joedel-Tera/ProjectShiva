@@ -2,7 +2,7 @@
 session_start();
 require_once('db.php');
 include 'headertop.php';
-
+echo $_SESSION['id'];
 if(isset($_SESSION['id'])){
   $userId = $_SESSION['id'];
   $sql = "SELECT * FROM property_reservations as pr 

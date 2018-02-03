@@ -224,7 +224,7 @@ CREATE TABLE `property_reservations` (
 
 LOCK TABLES `property_reservations` WRITE;
 /*!40000 ALTER TABLE `property_reservations` DISABLE KEYS */;
-INSERT INTO `property_reservations` VALUES (12,16,4,'Tsumi Chan','Strafer14@yahoo.com','09367661063','Sample Sample Sample','DECLINED','5'),(13,15,5,'Buyer 1 ','Buyer@buy.com','09367661063','Smaple buy','SOLD','3'),(17,17,5,'Crystal Maiden','crystal.maiden@dota2.com','09367661063','Interested please contact me.','DECLINED','5'),(18,14,3,'Joedel Espinosa','joedel.espinosa@gmail.com','09367661063','Please Contact Me!',NULL,'5'),(21,2,1,'Joedel Espinosa','joedel.espinosa@gmail.com','09367661063','Test Reserve 1','PENDING CONFIRMATION','14');
+INSERT INTO `property_reservations` VALUES (12,16,4,'Tsumi Chan','Strafer14@yahoo.com','09367661063','Sample Sample Sample','DECLINED','5'),(13,15,5,'Buyer 1 ','Buyer@buy.com','09367661063','Smaple buy','SOLD','3'),(17,17,5,'Crystal Maiden','crystal.maiden@dota2.com','09367661063','Interested please contact me.','DECLINED','5'),(18,14,3,'Joedel Espinosa','joedel.espinosa@gmail.com','09367661063','Please Contact Me!',NULL,'5'),(21,2,1,'Joedel Espinosa','joedel.espinosa@gmail.com','09367661063','Test Reserve 1','PENDING CONFIRMATION','6');
 /*!40000 ALTER TABLE `property_reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `recent_search` (
   `property_id` int(11) NOT NULL,
   `date_clicked` varchar(255) NOT NULL,
   PRIMARY KEY (`recent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +249,7 @@ CREATE TABLE `recent_search` (
 
 LOCK TABLES `recent_search` WRITE;
 /*!40000 ALTER TABLE `recent_search` DISABLE KEYS */;
-INSERT INTO `recent_search` VALUES (1,17,'01-29-2018'),(2,13,'01-29-2018'),(3,3,'01-29-2018'),(4,6,'01-29-2018'),(5,7,'01-29-2018'),(6,17,'01-29-2018'),(7,7,'01-29-2018'),(8,2,'01-29-2018'),(9,17,'02-03-2018'),(10,12,'02-03-2018'),(11,8,'02-03-2018'),(12,2,'02-03-2018'),(13,11,'02-03-2018'),(14,10,'02-03-2018');
+INSERT INTO `recent_search` VALUES (1,17,'01-29-2018'),(2,13,'01-29-2018'),(3,3,'01-29-2018'),(4,6,'01-29-2018'),(5,7,'01-29-2018'),(6,17,'01-29-2018'),(7,7,'01-29-2018'),(8,2,'01-29-2018'),(9,17,'02-03-2018'),(10,12,'02-03-2018'),(11,8,'02-03-2018'),(12,2,'02-03-2018'),(13,11,'02-03-2018'),(14,10,'02-03-2018'),(15,17,'02-03-2018');
 /*!40000 ALTER TABLE `recent_search` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +277,7 @@ CREATE TABLE `reservation_payments` (
 
 LOCK TABLES `reservation_payments` WRITE;
 /*!40000 ALTER TABLE `reservation_payments` DISABLE KEYS */;
-INSERT INTO `reservation_payments` VALUES (1,5,17,5,'1350','ABC-123'),(10,3,15,3,'1500','ZXC-1234'),(11,3,15,3,'1500','TFVC-1234'),(12,1,2,14,'1500','ABC-1234');
+INSERT INTO `reservation_payments` VALUES (1,5,17,5,'1350','ABC-123'),(10,3,15,3,'1500','ZXC-1234'),(11,3,15,3,'1500','TFVC-1234'),(12,1,2,6,'1500','ABC-1234');
 /*!40000 ALTER TABLE `reservation_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,4 +344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-03 21:40:38
+-- Dump completed on 2018-02-03 22:02:47

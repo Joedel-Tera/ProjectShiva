@@ -7,7 +7,7 @@
    and sends account confirmation email message
  */
 
-$getnextUserId = $mysqli->query("SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = 'users'");
+$getnextUserId = $mysqli->query("SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_NAME = 'users' AND TABLE_SCHEMA = 'housefinder'");
 
 $response = $getnextUserId->fetch_assoc()['AUTO_INCREMENT'];
 
