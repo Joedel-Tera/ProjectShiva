@@ -20,7 +20,7 @@ $refNumber = $_POST['paymentReference'];
 
 $getUserNumber = "SELECT * FROM property_reservations WHERE user_id = $userId";
 $res = $mysqli->query($getUserNumber);
-$userData = $res->fetch_assoc();
+$userData = $res->fetch_assoc();
 $customerNumber = $userData['customer_number'];
 
 if (isset($_POST['paymentDetails'])){
@@ -35,7 +35,7 @@ if (isset($_POST['paymentDetails'])){
         if($mysqli->query($sql2)){
             $number = $customerNumber;
             $message = "Thank you for submiting your reference number. the agent associated with the property will verify your reservation fee.";
-            $message2 = "Housefinder Notifications."
+            $message2 = "Housefinder Notifications.";
             $mainMessage = $message.' '.$message2;
             $deviceID = $SMS_DEVICE_ID;
 
@@ -62,7 +62,7 @@ if (isset($_POST['reservationSubmit'])){
         if($mysqli->query($sql2)){
             $number = $customerNumber;
             $message = "Thank you for submiting your reference number. the agent associated with the property will verify your reservation fee.";
-            $message2 = "Housefinder Notifications."
+            $message2 = "Housefinder Notifications.";
             $mainMessage = $message.' '.$message2;
             $deviceID = $SMS_DEVICE_ID;
 

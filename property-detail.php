@@ -122,7 +122,13 @@ require_once 'db.php';
 
         <?php 
             $i=1;
-            $sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 5";
+            /*$sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 5";*/
+            $sql = "SELECT property_title,id,price,location, MAX(recent_id)
+FROM recent_search 
+INNER JOIN properties ON property_id = id
+GROUP BY property_id
+ORDER BY MAX(recent_id) DESC
+LIMIT 5";
             $result = $mysqli->query($sql); 
         ?>  
 <div class="hot-properties hidden-xs">
@@ -132,7 +138,7 @@ require_once 'db.php';
 <div class="row">
                 <div class="col-lg-4 col-sm-5"><img src="<?php echo $row['featured']; ?>" class="img-responsive img-circle" alt="properties"/></div>
                 <div class="col-lg-8 col-sm-7">
-                  <h5><a href="property-detail.php?id=<?php echo $row['id'] ?>"><?php echo $row['property_title']; ?></a></h5>
+                  <h5><a class="addToRecentClicked" data-id="<?php echo $row['id']; ?>" href="#"><?php echo $row['property_title']; ?></a></h5>
                   <p class="price">Price: ₱<?php echo $row['price']; ?>
                       <br>
                     <?php echo $row['location']; ?>
@@ -291,7 +297,30 @@ $agentContact = $response->fetch_assoc()['contact_number'];
     <!-- <div id="caption"></div> -->
   </div>
   <script>
-
+      $('.addToRecentClicked').each(function(){
+    var _this = $(this);
+    _this.on('click', function(){
+      var propId = _this.attr('data-id');
+      $.ajax({
+                type: 'POST',
+                url: 'ajaxFunctions.php',
+                data: {
+                    'clickedProp' : propId
+                },
+                dataType: 'json',
+                success: function(data){
+                   if(data.result){
+                        setTimeout(function(){// wait for 5 secs(2)
+                            location.href = 'property-detail.php?id='+propId; // then reload the page.(3)
+                        }, 500);
+                   } else {
+                     alert("Error Occurred Please Try again later.");
+                   }
+                }
+            });
+    });
+  });
+      
       var modal = document.getElementById('myModal');
 
       modal.addEventListener('click',function(){

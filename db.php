@@ -13,7 +13,7 @@ if($setDeployment == 'Live'){
 	
 	$host = 'localhost';
 	$user = 'root';
-	$pass = 'Esco2017';
+	$pass = '';
 	$db = 'housefinder';
 }
 

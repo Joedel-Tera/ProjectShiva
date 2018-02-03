@@ -222,7 +222,12 @@ unset($_SESSION['alert']);
 </div>
 
 		<?php 
-			$sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 5;";
+			$sql = "SELECT property_title,id,price,location, MAX(recent_id)
+FROM recent_search 
+INNER JOIN properties ON property_id = id
+GROUP BY property_id
+ORDER BY MAX(recent_id) DESC
+LIMIT 5";
 			$result = $mysqli->query($sql); 
 		?>      
   <h4> Recently Viewed Properties</h4>  
@@ -232,7 +237,7 @@ unset($_SESSION['alert']);
 <div class="row">
 				<div class="col-lg-4 col-sm-5"><img src="<?php echo $row['featured']; ?>" class="img-responsive img-circle" alt="properties"></div>
 				<div class="col-lg-8 col-sm-7">
-				  <h5><a href="property-detail.php?id=<?php echo $row['id'] ?>"><?php echo $row['property_title']; ?></a></h5>
+				  <h5><a class="addToRecentClicked" data-id="<?php echo $row['id']; ?>" href="#"><?php echo $row['property_title']; ?></a></h5>
 				  <p class="price">Price: ₱<?php echo $row['price']; ?></p>
 				  <p class="price">Location: <?php echo $row['location']; ?></p> </div>
 			  </div>
@@ -256,7 +261,7 @@ unset($_SESSION['alert']);
 		<div class="col-lg-3 col-sm-3">
 		<div class="properties">
 		<h4 style="color:red;"><?php echo $row['property_type']; ?> </h4>
-	   <a href="property-detail.php?id=<?php echo $row['id'] ?>"> <div class="image-holder"><img style="height: 150px; width: 170px;" src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties">
+	   <a class="addToRecentClicked" data-id="<?php echo $row['id']; ?>" href="#"> <div class="image-holder"><img style="height: 150px; width: 170px;" src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties">
 		</div>
 		<?php $row['id'] ?>
 		<h4><?php echo $row['property_title']; ?></h4></a>

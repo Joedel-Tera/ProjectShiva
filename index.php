@@ -309,7 +309,7 @@ include'headertop.php';
         <div class="image-holder"><img style= "height:170px; width: 200px" src="<?php echo $row['featured']; ?>" class="img-responsive" alt="properties"/>
         </div>
 
-        <h4><a href="property-detail.php?id=<?php echo $row['id'] ?>"><?php echo $row['property_title']; ?></a></h4>
+        <h4><a class="addToRecentClicked" data-id="<?php echo $row['id']; ?>" href="#"><?php echo $row['property_title']; ?></a></h4>
         <p class="price">Price: ₱<?php echo $row['price']; ?>
         <br>
         <?php echo $row['property_category']; ?>
@@ -336,7 +336,13 @@ include'headertop.php';
 
         <?php
             $i=1;
-            $sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 3";
+            /*$sql = "SELECT *,MAX(recent_id) FROM recent_search INNER JOIN properties ON property_id = id WHERE status = 0 GROUP BY id ORDER BY MAX(recent_id) DESC LIMIT 3";*/
+            $sql = "SELECT property_title,id,price,location, MAX(recent_id)
+FROM recent_search 
+INNER JOIN properties ON property_id = id
+GROUP BY property_id
+ORDER BY MAX(recent_id) DESC
+LIMIT 3";
             $result = $mysqli->query($sql);
         ?>
       <div class="col-lg-5 col-lg-offset-1 col-sm-3 recommended">
@@ -364,7 +370,32 @@ include'headertop.php';
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $('.addToRecentClicked').each(function(){
+    var _this = $(this);
+    _this.on('click', function(){
+      var propId = _this.attr('data-id');
+      $.ajax({
+                type: 'POST',
+                url: 'ajaxFunctions.php',
+                data: {
+                    'clickedProp' : propId
+                },
+                dataType: 'json',
+                success: function(data){
+                   if(data.result){
+                        setTimeout(function(){// wait for 5 secs(2)
+                            location.href = 'property-detail.php?id='+propId; // then reload the page.(3)
+                        }, 500);
+                   } else {
+                     alert("Error Occurred Please Try again later.");
+                   }
+                }
+            });
+    });
+  });
 
+</script>
     </body>
 </html>
 

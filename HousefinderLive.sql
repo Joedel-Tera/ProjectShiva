@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: housefinder
+-- Host: 127.0.0.1    Database: housefinder
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -193,7 +193,7 @@ CREATE TABLE `properties` (
 
 LOCK TABLES `properties` WRITE;
 /*!40000 ALTER TABLE `properties` DISABLE KEYS */;
-INSERT INTO `properties` VALUES (1,'For Sale','House and Lot','Bacoor, Cavite','','4500000','No','1500','220','Detached','4','2','1','2','','Rustine','featured/2.jpg',1,'14.416022','120.968860',0,'12-24-2017'),(2,'For Sale','House and Lot','Imus, Cavite','','3900000','Yes','1500','190','Multi Storey','5','2','1','2','','Rustine','featured/1.jpg',1,'14.416022','120.968860',0,'12-27-2017'),(3,'For Sale','Condominium','Imus, Cavite','','3500000','No','1500','60','Condo','1','1','1','1','','Rustine','featured/hampton-condo-for-sale-imus-cavite-deca-homes (5).jpg',1,'14.416022','120.968860',0,'12-27-2017'),(4,'For Sale','Apartment','Imus, Cavite','','800000','Yes','750','50','Townhouse','1','1','','1','','Rustine','featured/01-apecweb_projects-san-isidroTOWNHOUSE-units-floor-plan.jpg',1,'14.416022','120.968860',4,'12-27-2017'),(5,'For Sale','House and Lot','Bacoor, Cavite','','1400000','Yes','1000','85','Rowhouse','2','1','','2','','Rustine','featured/bahay-kubo-different-types-kinds-styles-of-houses-in-philippines-rowhouses-towhouses (2).jpg',1,'14.416022','120.968860',0,'12-28-2017'),(6,'For Sale','House and Lot','Imus, Cavite','','2500000','No','1250','120','Bungalow','3','2','1','1','','Rustine','featured/4-bungalow-shutterstock-555x370.jpg',1,'14.416022','120.968860',0,'12-29-2017'),(7,'For Sale','House and Lot','Bacoor, Cavite','','3200000','Yes','1700','180','Multi Storey','5','2','1','2','','Rustine','featured/0002.jpg',1,'14.416022','120.968860',0,'01-09-2018'),(8,'For Sale','Apartment','Dasmarinas, Cavite','','1400000','No','1000','70','Townhouse','3','3','','2','','Derick','featured/townhouse-plans-PHP2014011-perspective.jpg',2,'14.416022','120.968860',0,'01-09-2018'),(9,'For Sale','House and Lot','Imus, Cavite','','4800000','No','2000','235','Multi-storey','3','2','1','2','','Derick','featured/1house.jpg',2,'14.416022','120.968860',0,'01-09-2018'),(10,'For Sale','House and Lot','Dasmarinas','','3300000','Yes','1500','130','Attached','3','2','1','2','','Derick','featured/5-single-attached-555x369.jpg',2,'14.416022','120.968860',0,'01-10-2018'),(11,'For Sale','House and Lot','Bacoor, Cavite','','2800000','No','1000','160','Bungalow','3','2','1','1','','Derick','featured/55dfd9e13297913fd809722ef25df99c--u-shaped-houses-cape-cod-houses.jpg',2,'14.416022','120.968860',0,'01-12-2018'),(12,'For Sale','House and Lot','Dasmarinas','','2100000','No','1000','110','Bungalow','2','1','','1','','Derick','featured/1452472_708904225907516_3018693867875630168_n.jpg',2,'14.416022','120.968860',0,'01-12-2018'),(13,'For Sale','House and Lot','Imus, Cavite','','3100000','Yes','1250','140','House & Lot','2','1','1','2','','Karl','featured/house-and-lot.jpg',3,'14.416022','120.968860',0,'01-12-2018'),(14,'For Sale','Apartment','Bacoor, Cavite','','1000000','No','800','40','Townhouse','2','1','','2','','Karl','featured/p_99_DREAM-HOMES-A-SINGLE-DETACHED-HOUSE-TOWNHOUSE-FOR-SALE-LOCATED-IN-QUIJADA-GUADALUPE-CEBU-CITY_c_2_TOWNHOUSE-FOR-SALE-IN-QUIJADA-GUADALUPE-CEBU-CITY-PHILIPPINES-TOWNHOUSE_6491355.jpg',3,'14.416022','120.968860',3,'01-24-2018'),(15,'For Sale','House and Lot','Dasmarinas, Cavite','','1600000','No','1000','130','Single','3','2','1','2','','Karl','featured/SD House 2.jpg',5,'14.416022','120.968860',4,'01-24-2018'),(16,'For Sale','House and Lot','Molino Bacoor',NULL,'3500000','No','1500','150','House & Lot','4','3','1','2','','Dek','featured/lalique.jpg',4,'14.386211','120.998032',3,'01-24-2018'),(17,'For Sale','House and Lot','Molino, Cavite',NULL,'2500000','Yes','1350','131','House and Lot','4','3','1','2','','Tsumi','featured/lalique.jpg',5,'14.386211','120.998032',0,'01-25-2018');
+INSERT INTO `properties` VALUES (1,'For Sale','House and Lot','Bacoor, Cavite','','4500000','No','1500','220','Detached','4','2','1','2','','Rustine','featured/2.jpg',1,'14.416022','120.968860',0,'12-24-2017'),(2,'For Sale','House and Lot','Imus, Cavite','','3900000','Yes','1500','190','Multi Storey','5','2','1','2','','Rustine','featured/1.jpg',1,'14.416022','120.968860',3,'12-27-2017'),(3,'For Sale','Condominium','Imus, Cavite','','3500000','No','1500','60','Condo','1','1','1','1','','Rustine','featured/hampton-condo-for-sale-imus-cavite-deca-homes (5).jpg',1,'14.416022','120.968860',0,'12-27-2017'),(4,'For Sale','Apartment','Imus, Cavite','','800000','Yes','750','50','Townhouse','1','1','','1','','Rustine','featured/01-apecweb_projects-san-isidroTOWNHOUSE-units-floor-plan.jpg',1,'14.416022','120.968860',4,'12-27-2017'),(5,'For Sale','House and Lot','Bacoor, Cavite','','1400000','Yes','1000','85','Rowhouse','2','1','','2','','Rustine','featured/bahay-kubo-different-types-kinds-styles-of-houses-in-philippines-rowhouses-towhouses (2).jpg',1,'14.416022','120.968860',0,'12-28-2017'),(6,'For Sale','House and Lot','Imus, Cavite','','2500000','No','1250','120','Bungalow','3','2','1','1','','Rustine','featured/4-bungalow-shutterstock-555x370.jpg',1,'14.416022','120.968860',0,'12-29-2017'),(7,'For Sale','House and Lot','Bacoor, Cavite','','3200000','Yes','1700','180','Multi Storey','5','2','1','2','','Rustine','featured/0002.jpg',1,'14.416022','120.968860',0,'01-09-2018'),(8,'For Sale','Apartment','Dasmarinas, Cavite','','1400000','No','1000','70','Townhouse','3','3','','2','','Derick','featured/townhouse-plans-PHP2014011-perspective.jpg',2,'14.416022','120.968860',0,'01-09-2018'),(9,'For Sale','House and Lot','Imus, Cavite','','4800000','No','2000','235','Multi-storey','3','2','1','2','','Derick','featured/1house.jpg',2,'14.416022','120.968860',0,'01-09-2018'),(10,'For Sale','House and Lot','Dasmarinas','','3300000','Yes','1500','130','Attached','3','2','1','2','','Derick','featured/5-single-attached-555x369.jpg',2,'14.416022','120.968860',0,'01-10-2018'),(11,'For Sale','House and Lot','Bacoor, Cavite','','2800000','No','1000','160','Bungalow','3','2','1','1','','Derick','featured/55dfd9e13297913fd809722ef25df99c--u-shaped-houses-cape-cod-houses.jpg',2,'14.416022','120.968860',0,'01-12-2018'),(12,'For Sale','House and Lot','Dasmarinas','','2100000','No','1000','110','Bungalow','2','1','','1','','Derick','featured/1452472_708904225907516_3018693867875630168_n.jpg',2,'14.416022','120.968860',0,'01-12-2018'),(13,'For Sale','House and Lot','Imus, Cavite','','3100000','Yes','1250','140','House & Lot','2','1','1','2','','Karl','featured/house-and-lot.jpg',3,'14.416022','120.968860',0,'01-12-2018'),(14,'For Sale','Apartment','Bacoor, Cavite','','1000000','No','800','40','Townhouse','2','1','','2','','Karl','featured/p_99_DREAM-HOMES-A-SINGLE-DETACHED-HOUSE-TOWNHOUSE-FOR-SALE-LOCATED-IN-QUIJADA-GUADALUPE-CEBU-CITY_c_2_TOWNHOUSE-FOR-SALE-IN-QUIJADA-GUADALUPE-CEBU-CITY-PHILIPPINES-TOWNHOUSE_6491355.jpg',3,'14.416022','120.968860',3,'01-24-2018'),(15,'For Sale','House and Lot','Dasmarinas, Cavite','','1600000','No','1000','130','Single','3','2','1','2','','Karl','featured/SD House 2.jpg',5,'14.416022','120.968860',4,'01-24-2018'),(16,'For Sale','House and Lot','Molino Bacoor',NULL,'3500000','No','1500','150','House & Lot','4','3','1','2','','Dek','featured/lalique.jpg',4,'14.386211','120.998032',3,'01-24-2018'),(17,'For Sale','House and Lot','Molino, Cavite',NULL,'2500000','Yes','1350','131','House and Lot','4','3','1','2','','Tsumi','featured/lalique.jpg',5,'14.386211','120.998032',0,'01-25-2018');
 /*!40000 ALTER TABLE `properties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,7 +215,7 @@ CREATE TABLE `property_reservations` (
   `reservation_status` varchar(45) DEFAULT NULL,
   `user_id` varchar(45) NOT NULL,
   PRIMARY KEY (`reservation_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +224,7 @@ CREATE TABLE `property_reservations` (
 
 LOCK TABLES `property_reservations` WRITE;
 /*!40000 ALTER TABLE `property_reservations` DISABLE KEYS */;
-INSERT INTO `property_reservations` VALUES (12,16,4,'Tsumi Chan','Strafer14@yahoo.com','09367661063','Sample Sample Sample','DECLINED','5'),(13,15,5,'Buyer 1 ','Buyer@buy.com','09367661063','Smaple buy','SOLD','3'),(17,17,5,'Crystal Maiden','crystal.maiden@dota2.com','09367661063','Interested please contact me.','DECLINED','5'),(18,14,3,'Joedel Espinosa','joedel.espinosa@gmail.com','09367661063','Please Contact Me!',NULL,'5');
+INSERT INTO `property_reservations` VALUES (12,16,4,'Tsumi Chan','Strafer14@yahoo.com','09367661063','Sample Sample Sample','DECLINED','5'),(13,15,5,'Buyer 1 ','Buyer@buy.com','09367661063','Smaple buy','SOLD','3'),(17,17,5,'Crystal Maiden','crystal.maiden@dota2.com','09367661063','Interested please contact me.','DECLINED','5'),(18,14,3,'Joedel Espinosa','joedel.espinosa@gmail.com','09367661063','Please Contact Me!',NULL,'5'),(21,2,1,'Joedel Espinosa','joedel.espinosa@gmail.com','09367661063','Test Reserve 1','PENDING CONFIRMATION','14');
 /*!40000 ALTER TABLE `property_reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `recent_search` (
   `property_id` int(11) NOT NULL,
   `date_clicked` varchar(255) NOT NULL,
   PRIMARY KEY (`recent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +249,7 @@ CREATE TABLE `recent_search` (
 
 LOCK TABLES `recent_search` WRITE;
 /*!40000 ALTER TABLE `recent_search` DISABLE KEYS */;
-INSERT INTO `recent_search` VALUES (1,17,'01-29-2018'),(2,13,'01-29-2018'),(3,3,'01-29-2018'),(4,6,'01-29-2018'),(5,7,'01-29-2018'),(6,17,'01-29-2018'),(7,7,'01-29-2018'),(8,2,'01-29-2018');
+INSERT INTO `recent_search` VALUES (1,17,'01-29-2018'),(2,13,'01-29-2018'),(3,3,'01-29-2018'),(4,6,'01-29-2018'),(5,7,'01-29-2018'),(6,17,'01-29-2018'),(7,7,'01-29-2018'),(8,2,'01-29-2018'),(9,17,'02-03-2018'),(10,12,'02-03-2018'),(11,8,'02-03-2018'),(12,2,'02-03-2018'),(13,11,'02-03-2018'),(14,10,'02-03-2018');
 /*!40000 ALTER TABLE `recent_search` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +268,7 @@ CREATE TABLE `reservation_payments` (
   `amount` varchar(45) NOT NULL,
   `reference_number` varchar(45) NOT NULL,
   PRIMARY KEY (`payment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +277,7 @@ CREATE TABLE `reservation_payments` (
 
 LOCK TABLES `reservation_payments` WRITE;
 /*!40000 ALTER TABLE `reservation_payments` DISABLE KEYS */;
-INSERT INTO `reservation_payments` VALUES (1,5,17,5,'1350','ABC-123'),(10,3,15,3,'1500','ZXC-1234'),(11,3,15,3,'1500','TFVC-1234');
+INSERT INTO `reservation_payments` VALUES (1,5,17,5,'1350','ABC-123'),(10,3,15,3,'1500','ZXC-1234'),(11,3,15,3,'1500','TFVC-1234'),(12,1,2,14,'1500','ABC-1234');
 /*!40000 ALTER TABLE `reservation_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +322,7 @@ CREATE TABLE `users` (
   `hash` varchar(32) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +331,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,3,'Dek','Llanes','llanesderick@gmail.com','Dekdek04','',1),(3,3,'Joedel','Espinosa','joedel.espinosa@gmail.com','$2y$10$CPm0k4rrEhh1yI7MZgfPlOPdADcMsknoD.2oTmi6ovMASaCwVIBj.','c15da1f2b5e5ed6e6837a3802f0d1593',0),(4,3,'Test','Tester','test@test.com','$2y$10$F8C.9P22wE4t1H8Q7lo9..PC6RlPU9cRbHlVUnZU1lR/VaEHR2YZ.','e165421110ba03099a1c0393373c5b43',0),(5,3,'House','Buyer','house.buyer@test.com','$2y$10$uo5d0GYfqdGBsZAbeDJnKOT3oVGfuqsCH/NBxKDvDDb6tLkEPqod.','93db85ed909c13838ff95ccfa94cebd9',0);
+INSERT INTO `users` VALUES (1,3,'Dek','Llanes','llanesderick@gmail.com','Dekdek04','',1),(3,3,'Joedel','Espinosa','joedel.espinosa@gmail.com','$2y$10$CPm0k4rrEhh1yI7MZgfPlOPdADcMsknoD.2oTmi6ovMASaCwVIBj.','c15da1f2b5e5ed6e6837a3802f0d1593',0),(4,3,'Test','Tester','test@test.com','$2y$10$F8C.9P22wE4t1H8Q7lo9..PC6RlPU9cRbHlVUnZU1lR/VaEHR2YZ.','e165421110ba03099a1c0393373c5b43',0),(5,3,'House','Buyer','house.buyer@test.com','$2y$10$uo5d0GYfqdGBsZAbeDJnKOT3oVGfuqsCH/NBxKDvDDb6tLkEPqod.','93db85ed909c13838ff95ccfa94cebd9',0),(6,3,'Test','User','testuser@gmail.com','$2y$10$0kq/trvX5MMDyzTSws5VdeLdYwfkwprHS8Rij/DGIxzkPxQTOfERi','a4300b002bcfb71f291dac175d52df94',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -344,4 +344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-29 13:59:22
+-- Dump completed on 2018-02-03 21:40:38

@@ -31,7 +31,7 @@ if (isset($_POST['Submit'])){
         $number = $customerNumber;
         $message = "Hello ".$customerName." Thank you for using our website Housefinder. ";
         $message2 = "We would like to thank you for your interest in some of the property posted. ";
-        $message3 = "The agent associated with the property you reserve will contact you within the prefered time you indicated at your notes."
+        $message3 = "The agent associated with the property you reserve will contact you within the prefered time you indicated at your notes.";
         $mainMessage = $message.' '.$message2.' '.$message3;
         $deviceID = $SMS_DEVICE_ID;
 
